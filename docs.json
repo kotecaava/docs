@@ -1,68 +1,170 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "DNA Framework",
+  "theme": "venus",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#CC785C",
+    "light": "#E89A7D",
+    "dark": "#B35D42",
+    "background": {
+      "dark": "#0F0F0F",
+      "light": "#FFFFFF"
+    }
   },
   "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/light.png",
+    "dark": "/logo/dark.png"
+  },
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Overview",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "introduction"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Getting Started",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "getting-started/welcome",
+              "getting-started/why-dna-exists",
+              "getting-started/what-problems-it-solves",
+              "getting-started/who-this-is-for",
+              "getting-started/quickstart",
+              "getting-started/one-page-summary"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Core Concepts",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "core-concepts/dna-premise",
+              "core-concepts/strands",
+              "core-concepts/genes",
+              "core-concepts/sequences",
+              "core-concepts/inheritance-conflict-constraints",
+              "core-concepts/maturity-levels"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Framework Architecture",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "architecture/company-genome-map",
+              "architecture/inter-strand-dependencies",
+              "architecture/failure-patterns"
+            ]
+          },
+          {
+            "group": "The 12 Strand Blueprints",
+            "pages": [
+              "architecture/strands/brand",
+              "architecture/strands/product",
+              "architecture/strands/ui",
+              "architecture/strands/ux",
+              "architecture/strands/tech",
+              "architecture/strands/data",
+              "architecture/strands/conversation",
+              "architecture/strands/operations",
+              "architecture/strands/sales",
+              "architecture/strands/ai",
+              "architecture/strands/security",
+              "architecture/strands/team"
+            ]
+          },
+          {
+            "group": "Building Your DNA",
+            "pages": [
+              "building/step-1-mapping",
+              "building/step-2-extracting-genes",
+              "building/step-3-writing-strands",
+              "building/step-4-designing-sequences",
+              "building/step-5-alignment-rituals",
+              "building/step-6-publishing-v1"
+            ]
+          },
+          {
+            "group": "Shaping & Evolving the DNA",
+            "pages": [
+              "evolving/auditing",
+              "evolving/detecting-fragmentation",
+              "evolving/fixing-conflicts",
+              "evolving/editing-genes",
+              "evolving/scaling-with-hiring",
+              "evolving/rewriting-after-pivot",
+              "evolving/integrating-acquired-teams",
+              "evolving/growth-evolution"
+            ]
+          },
+          {
+            "group": "Using DNA in Daily Operations",
+            "pages": [
+              "operations/decision-making",
+              "operations/figma-to-code",
+              "operations/sales-marketing-alignment",
+              "operations/product-engineering-synergy",
+              "operations/ops-efficiency",
+              "operations/ai-integration",
+              "operations/cultural-consistency",
+              "operations/daily-checklist"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "Examples & Playbooks",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Examples",
             "pages": [
-              "api-reference/introduction"
+              "examples/startup-dna",
+              "examples/scale-up-dna",
+              "examples/enterprise-dna"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Playbooks",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "playbooks/mapping-workshop",
+              "playbooks/shaping-workshop",
+              "playbooks/conflict-resolution",
+              "playbooks/30-day-sprint",
+              "playbooks/quarterly-review"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Templates",
+        "groups": [
+          {
+            "group": "Templates",
+            "pages": [
+              "templates/strand-template",
+              "templates/sequence-template",
+              "templates/gene-template",
+              "templates/maturity-matrix",
+              "templates/decision-log",
+              "templates/founders-deck",
+              "templates/onboarding-sheet"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Appendix",
+        "groups": [
+          {
+            "group": "Resources",
+            "pages": [
+              "appendix/glossary",
+              "appendix/faq",
+              "appendix/troubleshooting",
+              "appendix/using-with-ai",
+              "appendix/versioning"
             ]
           }
         ]
@@ -71,52 +173,60 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "Community",
+          "href": "https://discord.gg/dnaframework",
+          "icon": "discord"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "GitHub",
+          "href": "https://github.com/dnaframework",
+          "icon": "github"
         }
       ]
     }
   },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "GitHub",
+        "href": "https://github.com/dnaframework"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Get Started",
+      "href": "/getting-started/welcome"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://twitter.com/dnaframework",
+      "github": "https://github.com/dnaframework",
+      "linkedin": "https://linkedin.com/company/dnaframework"
     }
+  },
+  "modeToggle": {
+    "default": "dark",
+    "isHidden": false
+  },
+  "search": {
+    "prompt": "Search DNA Framework docs..."
+  },
+  "feedback": {
+    "thumbsRating": true,
+    "suggestEdit": true,
+    "raiseIssue": true
   }
 }

@@ -1,0 +1,86 @@
+---
+title: "Sequences: Cross-Company Workflows"
+description: "How strands and genes work together as repeatable, accountable flows."
+---
+
+# Sequences: Cross-Company Workflows
+Sequences are the repeatable, cross-functional workflows that run your company. They connect DNA (intent) → Strands (systems) → Genes (rules) so work moves predictably between teams and tools.
+
+<Callout type="info">
+A sequence is not a document. It's an executable flow: triggers, ordered steps, gates, owners, and signals. Well-designed sequences let you change behavior by changing a few genes and steps — not by endless meetings.
+</Callout>
+
+## Why sequences matter
+- They translate strategy into repeatable action.
+- They encode responsibility and handoffs between strands.
+- They make testing, automation, and AI safe by constraining operations to known steps and checks.
+
+## Sequence anatomy
+- Trigger: What starts the flow (bug report, customer request, roadmap item).
+- Inputs: Required artifacts (ticket, spec, mock, contract).
+- Steps: Ordered actions mapped to strand owners; each step references one or more genes.
+- Gates: Tests, reviews, or approvals that must pass before proceeding.
+- Outputs: Deliverables and signals (release, invoice, updated docs).
+- Rollback: Clear undo steps and metrics that indicate rollback conditions.
+- Owner: Single sequence owner responsible for health and cadence.
+- Signals: 3–5 metrics that show flow health (lead time, cycle time, error rate, customer satisfaction).
+
+## How strands and genes interact inside a sequence
+- Each step maps to a strand and applies the relevant genes (e.g., UI gene for component changes, Security gene for auth changes).
+- Gates enforce genes: CI contract tests (Tech gene), copy sign-off (Brand gene), accessibility checks (UX gene).
+- When a gene changes, update affected sequences and run a lightweight impact review across strand owners.
+
+## Canonical example: Feature Development Sequence
+Trigger: Product roadmap ticket approved
+Inputs: PRD, high-fidelity mocks, acceptance criteria, data schema
+Steps:
+  1. Product: Confirm acceptance criteria (Gene: Ownership — Human)
+  2. Design (UI/UX): Create accessible mocks (Gene: Accessibility) → deliver components
+  3. Tech: Implement backend + API (Gene: API Response Format) → run contract tests
+  4. Data: Add/evolve schema, update metrics (Gene: PII Access Control)
+  5. QA: Run automated tests + exploratory checks (Gate: CI & QA signoff)
+  6. Ops: Release with feature flags (Gate: Rollout plan & rollback ready)
+  7. Conversation/Sales: Publish release notes and enable enablement content (Gene: Brand Voice)
+Gates:
+  - CI green, contract tests pass
+  - Security quick-scan for auth/data changes
+  - Product sign-off on acceptance tests
+Outputs:
+  - Release toggled to 100% or staged rollout
+  - Changelog, ticket closed, metric dashboard updated
+Signals:
+  - Lead time, customer-reported bugs, deployment success rate, activation metric
+
+<Callout type="tip">
+Map every sequence step to specific genes and a single executor (Human | AI | Hybrid). If AI executes a step, require tests, logging, and a human gate for irreversible outcomes.
+</Callout>
+
+## Governance: change flow for sequences
+- Propose sequence change as a PR linking affected strands and genes.
+- Run impact checklist: owners, gates, tests, rollback.
+- Add CI/agent policies where Executor=AI/Hybrid.
+- Run a 1–2 cycle post-rollout review and bake learnings into genes.
+
+## Quickstart: your first sequence (10–30 minutes)
+1. Pick a high-friction workflow (e.g., “bug → fix → release”).
+2. Document trigger, 4–6 steps, owner, one gate, and 2 signals.
+3. Map each step to one gene.
+4. Run the flow once manually, note failures, then automate linting/tests.
+5. Iterate: tighten genes or adjust steps based on signals.
+
+## Common anti-patterns
+- Monster sequences with too many owners (no single owner).
+- Gates that are just meetings (make gates testable).
+- Sequences that ignore rollback or observability.
+- Letting AI make irreversible decisions without human gates.
+
+## Short checklist: healthy sequence
+- Clear trigger and owner
+- 4–8 discrete steps
+- Gates with automated checks where possible
+- Mapped genes on every step
+- 3 signals tracked and reviewed weekly
+
+<Callout type="success">
+Sequences are the living glue of DNA: change the sequence or its genes, and you change behavior company-wide — predictably and safely.
+</Callout>

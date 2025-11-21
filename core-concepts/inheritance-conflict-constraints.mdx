@@ -1,0 +1,373 @@
+---
+title: 'Inheritance, Conflict & Constraints'
+description: 'The physics of how companies self-organize'
+---
+
+# Inheritance, Conflict & Constraints
+
+DNA isn't static. It **evolves**.
+
+But evolution isn't random—it follows rules. This page explains the physics of how your company's DNA changes and self-organizes.
+
+---
+
+## Inheritance: How Genes Extend
+
+**Inheritance** is when a new gene builds on an existing one.
+
+### Example: Color Hierarchy
+
+```yaml
+Parent Gene: Brand.ColorPrimary
+Rule: Brand color is #0066FF (blue)
+
+Child Gene: UI.InteractiveColor
+Rule: Interactive elements use Brand.ColorPrimary
+Inherits: Brand.ColorPrimary
+
+Grandchild Gene: UI.HoverState
+Rule: Hover states darken by 10%
+Inherits: UI.InteractiveColor
+Calculation: darken(Brand.ColorPrimary, 10%)
+```
+
+**When Brand.ColorPrimary changes, all descendants automatically update.**
+
+---
+
+### Why Inheritance Matters
+
+Without inheritance:
+- Change brand color
+- Manually update 47 places
+- Miss 3 of them
+- Product feels inconsistent
+
+With inheritance:
+- Change brand color (one gene)
+- All descendants update automatically
+- Zero manual work
+- Perfect consistency
+
+---
+
+## Conflict: When Genes Contradict
+
+Sometimes genes contradict each other. **This is not a bug—it's information.**
+
+Conflicts reveal hidden tensions that need resolution.
+
+### Example: Speed vs. Security
+
+```yaml
+Gene: Operations.ShipFast
+Rule: Ship features within 2-week sprints
+Priority: High velocity
+
+Gene: Security.ReviewRequired
+Rule: All code changes require security review (3-5 days)
+Priority: Zero vulnerabilities
+
+Conflict: Security review timeline exceeds sprint length
+```
+
+**What do you do?**
+
+---
+
+### Conflict Resolution Strategies
+
+#### 1. **Prioritization**
+Decide which gene wins.
+
+```yaml
+Resolution: Security.ReviewRequired takes precedence
+Outcome: Sprints adjusted to 3-week cycles
+Rationale: Security breach costs > slower shipping
+```
+
+#### 2. **Synthesis**
+Create a new gene that satisfies both.
+
+```yaml
+New Gene: Security.FastTrackReview
+Rule: Security reviews prioritized for sprint-critical features
+  - Daily review slots reserved
+  - 2-day SLA for P0 features
+  - 5-day SLA for P1 features
+Satisfies: Both speed and security needs
+```
+
+#### 3. **Context-Dependent**
+Both genes apply in different contexts.
+
+```yaml
+Resolution: Context-based priority
+  - Customer-facing features: Security.ReviewRequired wins
+  - Internal tools: Operations.ShipFast wins
+Outcome: Split review process by risk level
+```
+
+#### 4. **Deprecation**
+One gene is outdated.
+
+```yaml
+Resolution: Deprecate Operations.ShipFast
+Reason: Company maturity, can't sacrifice security anymore
+New Gene: Operations.BalancedShipping (includes security in timeline)
+```
+
+---
+
+### Conflict as Signal
+
+**Conflicts are valuable.**
+
+They show:
+- Where your company is growing
+- Where old assumptions no longer fit
+- Where implicit values need to become explicit
+
+**Don't avoid conflicts. Resolve them explicitly.**
+
+---
+
+## Constraints: How Genes Limit Each Other
+
+**Constraints** are when one gene restricts possibilities for another.
+
+This isn't conflict—it's physics. Some genes naturally limit others.
+
+### Example: Tech Constrains UI
+
+```yaml
+Gene: Tech.ResponsiveFramework
+Rule: All UI must be mobile-responsive
+Constraint on: UI Strand
+
+Impact on UI:
+  - Can't use: Fixed-width layouts
+  - Can't use: Hover-only interactions
+  - Must use: Touch-friendly hit targets (min 44px)
+  - Must use: Fluid typography
+```
+
+**Tech gene creates boundaries that UI genes must respect.**
+
+---
+
+### Common Constraint Patterns
+
+#### Tech → UI/UX
+```yaml
+Tech.Browser Support
+  Constrains: UI.Animations (no advanced CSS)
+  Constrains: UX.Features (no WebRTC on old browsers)
+
+Tech.Performance Budget
+  Constrains: UI.ImageSize (max 200kb)
+  Constrains: UX.VideoAutoplay (not on mobile)
+```
+
+#### Brand → Product
+```yaml
+Brand.Positioning ("Premium, not cheap")
+  Constrains: Product.PricingStrategy (no low-end tier)
+  Constrains: Product.FeatureScope (no "good enough" features)
+```
+
+#### Security → Data
+```yaml
+Security.Compliance (GDPR, HIPAA)
+  Constrains: Data.Storage (encrypted at rest)
+  Constrains: Data.Retention (delete after 90 days)
+  Constrains: Data.Access (audit logs required)
+```
+
+#### Product → AI
+```yaml
+Product.UserControl ("Users always in control")
+  Constrains: AI.Autonomy (AI suggests, never decides)
+  Constrains: AI.Automation (user approval required)
+```
+
+---
+
+### Why Constraints Are Good
+
+Constraints:
+- **Prevent bad decisions** before they happen
+- **Clarify boundaries** between systems
+- **Force creativity** within limits
+- **Make dependencies visible**
+
+**Constraints are not limitations—they're guardrails.**
+
+---
+
+## The Constraint Graph
+
+Your DNA forms a **directed acyclic graph (DAG)** of constraints.
+
+```
+Brand ─→ Product ─→ UX ─→ UI
+  ↓         ↓        ↓     ↓
+  └────→ Sales    Tech    Data
+            ↓        ↓     ↓
+         Operations ← AI ← Security
+```
+
+**Arrows = "constrains"**
+
+This graph shows:
+- Which genes depend on which
+- What order to make decisions
+- Which changes will ripple through the system
+
+---
+
+## Constraint Conflicts
+
+Sometimes constraints form impossible situations.
+
+### Example: Impossible Triangle
+
+```yaml
+Gene: Product.FeatureRichness
+Rule: Build comprehensive features, not MVPs
+
+Gene: Tech.FastShipping
+Rule: Ship features in 1-week cycles
+
+Gene: Team.SmallTeams
+Rule: Keep engineering teams at 3-5 people
+
+Conflict: Can't build comprehensive features + ship weekly + stay small
+```
+
+**This is real tension that needs resolution.**
+
+Options:
+1. Relax Product.FeatureRichness (ship MVPs)
+2. Extend Tech.FastShipping (2-week cycles)
+3. Grow Team.SmallTeams (hire more engineers)
+4. Reduce Product.FeatureScope (build less)
+
+**The constraint conflict forces an explicit strategic decision.**
+
+---
+
+## Evolution: How DNA Changes Over Time
+
+DNA evolves through four mechanisms:
+
+### 1. **Mutation** (Gene Change)
+A gene changes because context changed.
+
+```yaml
+Old Gene: Brand.Voice
+Rule: Playful, casual, use emojis
+
+New Gene: Brand.Voice (v2)
+Rule: Professional, clear, no emojis
+Reason: Target market shifted from consumers to enterprise
+```
+
+### 2. **Insertion** (New Gene)
+A new gene is added.
+
+```yaml
+New Gene: AI.TransparencyRequirement
+Rule: All AI-generated content must be labeled
+Context: Regulatory requirement introduced
+Impact: Affects Conversation, Product, UI strands
+```
+
+### 3. **Deletion** (Gene Removal)
+A gene becomes obsolete.
+
+```yaml
+Deleted Gene: Tech.IE11Support
+Reason: <0.1% of users, maintenance burden too high
+Date Deprecated: Q1 2024
+Date Removed: Q2 2024
+```
+
+### 4. **Recombination** (Strand Reorganization)
+Genes move between strands.
+
+```yaml
+Gene: ConversationTone
+Old Strand: Brand
+New Strand: Conversation (newly created)
+Reason: Conversation became its own system as AI expanded
+```
+
+---
+
+## DNA Versioning
+
+Every change to DNA should be versioned.
+
+```yaml
+Company DNA v2.3.0
+Date: 2024-03-15
+
+Changes:
+- [BREAKING] Brand.Voice updated (removed emojis)
+- [NEW] AI.TransparencyRequirement added
+- [DEPRECATED] Tech.IE11Support (removed in v2.4.0)
+- [FIXED] UI.ButtonHierarchy clarified (max 1 primary button)
+
+Migration Guide:
+- Update all marketing copy to remove emojis
+- Add AI labels to product UI
+- Remove IE11 polyfills in next release
+```
+
+**Versioning lets you:**
+- Track changes over time
+- Communicate updates to the team
+- Roll back if needed
+- Understand why decisions were made
+
+---
+
+## The Self-Organization Property
+
+Here's the magic:
+
+**When DNA is explicit, companies start self-organizing.**
+
+- Engineers check Tech genes before building
+- Designers reference UI genes before designing
+- Product checks constraints before proposing features
+- Sales applies Brand genes when talking to customers
+
+**You don't need to be in every meeting.**
+
+The DNA guides decisions.
+
+---
+
+## The DNA Equation
+
+```
+Alignment = (Explicit Genes × Active Constraints) / Entropy
+```
+
+More explicit genes → more alignment
+More active constraints → fewer bad decisions
+Less entropy → more coherence
+
+**DNA increases the numerator and decreases the denominator.**
+
+---
+
+## Next: Maturity Levels
+
+Now you understand how DNA works. Let's see where your company sits on the evolution scale.
+
+<Card title="DNA Maturity Levels" icon="chart-line" href="/core-concepts/maturity-levels">
+  Where your company sits on the evolution scale
+</Card>

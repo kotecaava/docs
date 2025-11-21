@@ -1,0 +1,538 @@
+---
+title: 'Genes: The Atomic Rules'
+description: 'Tiny decisions that shape everything'
+---
+
+# Genes: The Atomic Rules
+
+**A gene is the smallest unit of decision-making in your company.**
+
+It's a single, explicit rule that eliminates ambiguity and shapes behavior.
+
+---
+
+## Human vs AI: Ownership of Work
+Humans own:
+- Purpose, ethics, risk, and irreversible commitments.
+- Novel or ambiguous decisions without precedent.
+- Exceptions to policy and cross-strand tradeoffs.
+- Accountability for outcomes; final sign-off on changes to DNA.
+
+AI owns:
+- Executing defined sequences within constraints (agents, automations).
+- Pattern enforcement: linting, validation, policy checks.
+- Drafting: summaries, first-pass proposals, PRs under templates.
+- Retrieval and monitoring: surface signals, anomalies, and deltas.
+- Logging and traceability: produce artifacts for review.
+
+<Callout type="tip">
+Default rule: If the cost of a wrong decision is high or irreversible, keep it Human or Hybrid. If it’s repetitive, checkable, and reversible, make it AI.
+</Callout>
+
+---
+
+## What Makes a Good Gene?
+
+### 1. **Atomic**
+It answers ONE specific question. Not a collection of related ideas—one decision.
+
+❌ Bad: "Our design should be clean, consistent, and user-friendly"
+✅ Good: "Use max one primary button per screen section"
+
+### 2. **Actionable**
+Someone can apply it immediately without interpretation.
+
+❌ Bad: "We value speed"
+✅ Good: "Ship MVPs in 2-week sprints, iterate based on feedback"
+
+### 3. **Explicit**
+No room for interpretation. Two people reading it make the same choice.
+
+❌ Bad: "Use color intentionally"
+✅ Good: "Brand colors only for interactive elements—buttons, links, focus states"
+
+### 4. **Contextual**
+It includes WHY, not just WHAT.
+
+❌ Bad: "Use TypeScript"
+✅ Good: "Use TypeScript (prevents runtime errors, improves refactoring confidence)"
+
+### 5. **Constraining**
+It eliminates options. That's the point.
+
+❌ Bad: "Consider user needs when designing"
+✅ Good: "Modals for actions, pages for destinations—no exceptions"
+
+---
+
+## Gene Anatomy
+
+Every gene has five parts:
+
+```yaml
+Gene: [Name]
+  Clear, specific identifier
+
+Context: [Why this rule exists]
+  The reasoning behind the decision
+
+Rule: [The actual decision]
+  The explicit constraint or pattern
+
+Constraints: [What this affects or limits]
+  Which other genes or strands this impacts
+
+Example: [Real-world application]
+  How this looks in practice
+
+Executor: [Human | AI | Hybrid]
+  Who executes this gene in practice
+
+AI Scope: [Allowed actions / Prohibited actions]
+  What the AI may automate vs. must not do
+
+Review: [None | Spot-check | 100% sign-off]
+  Human oversight required for outputs
+
+Data: [Approved data sources / scopes]
+  What data the executor (AI/Human) may access
+
+Audit: [Log spec]
+  How outputs, prompts, and decisions are recorded
+
+Tests: [Acceptance criteria]
+  Small set of checks that prove compliance
+```
+
+---
+
+## Gene Examples Across Strands
+
+### Brand Gene
+
+```yaml
+Gene: Brand Voice - Person
+Context: We want to feel direct and personal, not corporate
+Rule: Always write in second person ("you"), never third person ("users" or "customers")
+Constraints:
+  - Applies to all product copy, docs, and marketing
+  - Sales emails can use first person ("we") when appropriate
+Example:
+  ✅ "Your data is encrypted"
+  ❌ "User data is encrypted"
+Executor: Hybrid
+AI Scope:
+  - May rewrite drafts into second person
+  - Must not publish without human spot-check for key pages
+Review: Spot-check
+Data: Public brand guide + approved copy corpus
+Audit: Store diffs of AI rewrites with author + timestamp
+Tests:
+  - 10-sample monthly audit shows ≥95% second-person compliance
+```
+
+---
+
+### Product Gene
+
+```yaml
+Gene: Feature Scope - Power Users First
+Context: We're building for experts, not beginners. Depth matters more than ease.
+Rule: New features must provide value to power users. If a feature is "nice for beginners but not useful for experts," we don't build it.
+Constraints:
+  - Onboarding features are the exception
+  - If experts would turn it off, don't ship it
+Example:
+  ✅ Advanced filters, keyboard shortcuts, batch actions
+  ❌ Tooltips explaining basic concepts
+Executor: Human
+AI Scope:
+  - May suggest features based on usage data
+  - Must not decide scope without human approval
+Review: 100% sign-off for new features
+Data: User research, usage metrics
+Audit: Feature approval tickets retained 12 months
+Tests:
+  - User testing shows power users benefit clearly
+```
+
+---
+
+### UI Gene
+
+```yaml
+Gene: Button Hierarchy
+Context: Consistent visual weight prevents decision paralysis
+Rule:
+  - Primary button: Solid, brand color, for main action
+  - Secondary button: Outline, brand color, for alternate action
+  - Tertiary button: Text only, for low-priority actions
+  - Max one primary button per screen section
+Constraints:
+  - Destructive actions use tertiary with red text
+  - Loading states maintain button type (primary stays primary)
+Example:
+  In a modal:
+    - "Save" = Primary
+    - "Cancel" = Tertiary
+Executor: AI
+AI Scope:
+  - May enforce button styles via linting
+  - Must not change button hierarchy without review
+Review: None for style enforcement, Human for hierarchy changes
+Data: UI component library
+Audit: CI logs for linting violations
+Tests:
+  - CI fails if button hierarchy rules are violated
+```
+
+---
+
+### UX Gene
+
+```yaml
+Gene: Error Handling - Inline First
+Context: Errors should appear where the problem is, not as interruptions
+Rule:
+  - Form errors: Inline, next to the field
+  - Action errors: Toast notification, bottom-right
+  - System errors: Modal, only when action cannot continue
+Constraints:
+  - Never use alert() or browser dialogs
+  - Errors must be dismissable (except blocking modals)
+Example:
+  - Email validation fails → red text below field
+  - Network request fails → toast: "Connection lost. Retrying..."
+Executor: AI
+AI Scope:
+  - May lint PRs and auto-comment when rules are violated
+  - May open autofix PRs for copy-only or placement changes
+Review: None for lint comments, Human merge for autofix PRs
+Data: UI codebase + component library
+Audit: CI logs of violations and autofix PRs
+Tests:
+  - CI blocks merge if violations > 0
+```
+
+---
+
+### Tech Gene
+
+```yaml
+Gene: API Response Format
+Context: Consistent API responses simplify client code and reduce bugs
+Rule: All API endpoints return JSON:API format
+  {
+    data: {...},
+    meta: {...},
+    errors: [...]
+  }
+Constraints:
+  - No direct status codes in response body
+  - Use HTTP status codes correctly (200, 400, 500)
+  - Errors always as array, even if single error
+Example:
+  Success: { data: { id: 1, name: "..." }, meta: { timestamp: ... } }
+  Error: { errors: [{ status: 400, detail: "Invalid email" }] }
+Executor: Hybrid
+AI Scope:
+  - May enforce via schema checks and code mods
+  - Must not accept breaking changes without ticket + approval
+Review: 100% sign-off for schema changes
+Data: API repo + contract tests
+Audit: Contract test artifacts retained 12 months
+Tests:
+  - Contract tests pass across all endpoints
+```
+
+---
+
+### Data Gene
+
+```yaml
+Gene: PII Access Control
+Context: Privacy is non-negotiable, access must be auditable
+Rule: Personally Identifiable Information (PII) only accessible by:
+  - Backend services with explicit need
+  - Admin users with 2FA enabled
+  - All access logged to audit table
+Constraints:
+  - Frontend never receives raw PII (emails, addresses, etc.)
+  - Use masked/hashed versions for display
+  - Logs stored for 2 years minimum
+Example:
+  - Admin sees: "john.doe@example.com"
+  - Frontend sees: "j****e@example.com"
+Executor: Human
+AI Scope:
+  - May not access or process PII
+  - May scan for compliance and report issues
+Review: 100% sign-off for access changes
+Data: User data access logs
+Audit: Access logs retained 2 years
+Tests:
+  - Regular audits show no unauthorized PII access
+```
+
+---
+
+### Conversation Gene
+
+```yaml
+Gene: AI Disclosure
+Context: Users must know when they're talking to AI vs. human
+Rule: Always disclose AI-generated responses with visual indicator:
+  - Avatar labeled "AI"
+  - Subtle badge on message card
+  - Disclaimer on first AI message in thread
+Constraints:
+  - Never pretend AI is human
+  - Even when AI is 99% accurate
+Example:
+  AI message includes: "✨ AI-generated response"
+Executor: AI
+AI Scope:
+  - May generate and send AI disclosures
+  - Must not disable or obscure disclosure
+Review: None
+Data: N/A
+Audit: Log all AI-generated messages
+Tests:
+  - 100% of AI messages include disclosure
+```
+
+---
+
+### Operations Gene
+
+```yaml
+Gene: Meeting-Free Days
+Context: Deep work requires uninterrupted blocks
+Rule: No internal meetings on Tuesdays and Thursdays
+Constraints:
+  - Applies to all teams
+  - External meetings (customers, investors) allowed
+  - Exceptions require CEO approval
+Example:
+  - Monday: Planning meeting
+  - Tuesday: Deep work
+  - Wednesday: Sync meetings
+  - Thursday: Deep work
+  - Friday: Retros, demos
+Executor: Human
+AI Scope:
+  - May suggest agenda items or action points
+  - Must not schedule or cancel meetings
+Review: None
+Data: Team calendars
+Audit: Meeting logs
+Tests:
+  - Calendar audit shows no internal meetings on off days
+```
+
+---
+
+### Sales Gene
+
+```yaml
+Gene: Discount Approval Matrix
+Context: Prevent margin erosion while giving reps flexibility
+Rule:
+  - 0-10% discount: Rep decides
+  - 11-15% discount: Sales Manager approval
+  - 16-20% discount: VP Sales approval
+  - >20% discount: CEO approval + written justification
+Constraints:
+  - Discounts apply to annual contracts only
+  - No stacking multiple discounts
+Example:
+  - $10k deal, 12% discount → Sales Manager approval required
+Executor: Human
+AI Scope:
+  - May suggest discounts based on deal size and history
+  - Must not approve discounts over 10% without manager
+Review: Spot-check for large discounts
+Data: Sales data, discount history
+Audit: Discount approval logs
+Tests:
+  - 100% of discounts over 10% have manager approval
+```
+
+---
+
+### AI Gene
+
+```yaml
+Gene: Model Selection by Use Case
+Context: Different models for different needs, optimize for cost/performance
+Rule:
+  - Reasoning tasks (complex decisions): Claude Sonnet
+  - Speed tasks (autocomplete, suggestions): GPT-4o
+  - Embeddings: OpenAI text-embedding-3-small
+Constraints:
+  - Never use o1 for production (too slow)
+  - Switch models based on latency SLAs
+Example:
+  - Code review analysis → Claude Sonnet
+  - Search query expansion → GPT-4o
+Executor: AI
+AI Scope:
+  - May select and switch models based on task
+  - Must not use deprecated or unapproved models
+Review: None
+Data: Model registry
+Audit: Model usage logs
+Tests:
+  - 100% of tasks use approved models
+```
+
+---
+
+### Security Gene
+
+```yaml
+Gene: Authentication Method
+Context: Passwords are a security risk and support burden
+Rule: OAuth only. No password-based auth.
+  - Supported providers: Google, GitHub, Microsoft
+  - Magic links for email-only users
+Constraints:
+  - No "forgot password" flows
+  - No password storage, no bcrypt, no complexity rules
+Example:
+  - Login page shows: "Sign in with Google/GitHub/Microsoft"
+  - Email-only option sends magic link
+Executor: Human
+AI Scope:
+  - May not create exceptions or temporary backdoors
+  - May scan for violations and open issues
+Review: 100% sign-off for auth changes
+Data: Auth config + infra code
+Audit: Security review tickets mandatory
+Tests:
+  - Pen tests confirm zero password paths
+```
+
+---
+
+### AI Governance Gene (New)
+
+```yaml
+Gene: AI Assignment & Guardrails
+Context: Avoid misuse of AI; keep humans in charge of high-risk areas
+Rule:
+  - Tag each gene with Executor = Human | AI | Hybrid
+  - AI may automate reversible, testable tasks only
+  - Human sign-off required for legal, HR, security, pricing, or irreversible commits
+Constraints:
+  - AI cannot approve contracts, grant prod access, or override security policies
+  - AI must operate within approved tools and data scopes
+Example:
+  - AI drafts an SOW → Human must approve before sending
+Executor: Human
+AI Scope:
+  - Generate drafts, validations, alerts; no final approvals
+Review: 100% sign-off for outputs affecting customers or prod
+Data: Only approved, non-PII corp data unless DPO-approved
+Audit: Store prompts/outputs for 90 days; link to tickets
+Tests:
+  - Random weekly audit of 20 AI outputs → 0 critical violations
+```
+
+---
+
+## Gene Density
+
+How many genes should you have?
+
+**There's no fixed number.** But here are guidelines:
+
+### Early-stage startup (5-20 people):
+- 20-40 genes total
+- Focus on Brand, Product, UI, Tech
+
+### Growth stage (20-100 people):
+- 60-120 genes total
+- Add Operations, Sales, Data, UX
+
+### Scale stage (100+ people):
+- 150-300 genes total
+- All 12 strands well-developed
+
+**More genes = more constraint = more alignment**
+
+---
+
+## When to Create a Gene
+
+Create a gene when:
+
+1. **A decision gets debated more than once**
+   "Should this be a modal or page?" → Time for a gene
+
+2. **Different people make different choices**
+   Inconsistent button styles → Gene needed
+
+3. **A pattern emerges organically**
+   Team naturally converges on a pattern → Encode it
+
+4. **Onboarding reveals gaps**
+   New hire asks "how do we handle X?" → Document as gene
+
+5. **A mistake happens repeatedly**
+   Same error keeps occurring → Constrain it with a gene
+
+---
+
+## Gene Evolution
+
+Genes aren't permanent. They evolve:
+
+### Mutation
+A gene changes because context changed
+```
+Old: "Use REST APIs"
+New: "Use GraphQL for client-server, REST for service-service"
+```
+
+### Inheritance
+A new gene extends an existing one
+```
+Parent: "Brand colors for interactive elements"
+Child: "Hover states darken brand color by 10%"
+```
+
+### Deprecation
+A gene becomes obsolete
+```
+Deprecated: "Support IE11"
+Reason: <1% of users, too much maintenance cost
+```
+
+---
+
+## The Power of Genes
+
+**Genes eliminate micro-decisions.**
+
+Instead of:
+- "Let me ask the team"
+- "Let me schedule a meeting"
+- "Let me check with my manager"
+
+You get:
+- Check the gene
+- Apply the rule
+- Move forward
+
+**This is how DNA creates speed.**
+
+---
+
+## Next: Sequences
+
+Genes are rules. **Sequences show how genes work together.**
+
+<Card title="Learn About Sequences" icon="diagram-project" href="/core-concepts/sequences">
+  Cross-company workflows that apply multiple genes (run by Humans, AI, or Hybrid)
+</Card>
