@@ -5,11 +5,7 @@
   "colors": {
     "primary": "#CC785C",
     "light": "#E89A7D",
-    "dark": "#B35D42",
-    "background": {
-      "dark": "#0F0F0F",
-      "light": "#FFFFFF"
-    }
+    "dark": "#B35D42"
   },
   "favicon": "/favicon.svg",
   "logo": {
@@ -195,7 +191,7 @@
     "primary": {
       "type": "button",
       "label": "Get Started",
-      "href": "/getting-started/welcome"
+      "href": "https://github.com/dnaframework"
     }
   },
   "contextual": {
