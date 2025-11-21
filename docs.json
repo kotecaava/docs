@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "name": "DNA Framework",
-  "theme": "venus",
+  "theme": "mint",
   "colors": {
     "primary": "#CC785C",
     "light": "#E89A7D",
