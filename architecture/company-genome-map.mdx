@@ -1,4 +1,227 @@
 ---
-title: 'The Company Genome Map'
-description: 'Your full system visible on one page'
+title: "The Company Genome Map"
+description: "A single visual that shows how all strands, sequences, and genes of your company connect into one operating system."
 ---
+
+---
+
+_One picture of how your whole company actually works._
+
+The **Company Genome Map** is the visual centerpiece of the DNA Framework.\
+It’s a one-page diagram that shows:
+
+- your core DNA,
+- your 12 strands,
+- their key sequences,
+- and the most important interactions between them.
+
+This page explains **what goes into the map**, **where visuals should appear**, and **how to read and use it**.
+
+---
+
+## The Whole Thing in One View
+
+```
+                         ┌─────────────────────┐
+                         │      COMPANY DNA    │
+                         │ "Core DNA Sentence" │
+                         └─────────┬───────────┘
+                                   │
+                ┌──────────────────┴──────────────────┐
+                │                                     │
+        ┌───────▼───────┐                     ┌───────▼───────┐
+        │   STRAND 1    │   ...               │   STRAND 12   │
+        │   (Brand)     │                     │    (Team)     │
+        └───┬─────┬─────┘                     └───┬─────┬─────┘
+            │     │                                 │     │
+            │     │                                 │     │
+            │     │                                 │     │
+            │     │                                 │     │
+         ┌──▼──┐  │                              ┌──▼──┐  │
+         │Seq A│  │                              │Seq Z│  │
+         │(flow│  │                              │(flow│  │
+         │of work)│                              │of work)│
+         └──┬──┘  │                              └──┬──┘  │
+            │     │                                 │     │
+      ● Gene 1    ● Gene 2                    ● Gene 37   ● Gene 38
+   (rule/behavior)(rule/behavior)         (rule/behavior)(rule/behavior)
+```
+
+---
+
+## 2. Legend (What Each Symbol Means)
+
+```
+[ COMPANY DNA ]   = The core identity / “what must never break”.
+[ STRAND ]        = One of the core systems (Brand, Product, Tech, Ops, etc.).
+[ Seq X ]         = A Sequence: a repeatable workflow that crosses strands.
+● Gene            = A Gene: a specific rule, constraint, or behavior.
+│ and ─           = Structural links (who belongs to what).
+→ or ▼            = Direction of influence / flow.
+```
+
+---
+
+## 3. Zooming In: Hierarchy as Symbols
+
+### a) Top Level – DNA
+
+```
+[ COMPANY DNA ]
+    "We ship fast and protect trust."
+          │
+          │  (everything below must be compatible with this sentence)
+          ▼
+```
+
+The **Core DNA sentence** acts like gravity.\
+Every strand, sequence, and gene must align with it.
+
+---
+
+### b) Strands – The 12 Core Systems
+
+```
+[Brand]   [Product]   [UI]   [UX]   [Tech]   [Data]
+[Conv.]   [Ops]       [Sales][AI]   [Sec.]   [Team]
+```
+
+You can imagine them as a ring:
+
+```
+              [Brand]     [Product]     [UI]
+
+        [Team]                               [UX]
+
+        [Sec.]                               [Tech]
+
+              [AI]       [Data]       [Conv.]
+
+                  [Ops]          [Sales]
+```
+
+Each **[Strand]**:
+
+- has its own rules (genes),
+- owns some parts of sequences (steps),
+- and is influenced by other strands.
+
+---
+
+### c) Sequences – How Work Actually Flows
+
+Example: **“Ship a Feature”** sequence:
+
+```
+[Product] → [UX] → [UI] → [Tech] → [Ops] → [Conversation]
+   │          │       │      │       │          │
+   ●          ●       ●      ●       ●          ●
+  Gene       Gene    Gene   Gene    Gene       Gene
+("Define   ("Test   ("Use  ("Code  ("Deploy  ("Announce
+ problem") prototype") design")  reviewed") safely")  feature")
+```
+
+Here:
+
+- The **horizontal arrows** show the workflow.
+- The **● genes under each step** define how that step must be done so it’s aligned with your DNA.
+
+---
+
+### d) Genes – The Atomic Rules
+
+Inside each strand file you basically have:
+
+```
+[Strand: Ops]
+
+  ● Gene: "No release goes live without a 3-step checklist."
+  ● Gene: "Every incident gets a postmortem within 48 hours."
+  ● Gene: "All customer-impacting changes are logged."
+
+These ● genes attach to sequences:
+
+  [Tech] → [Ops] → [Conversation]
+           │   │
+           ●   ●
+```
+
+Genes are the **smallest units of structure**.\
+Change a gene → you change behavior → you change the strand → you change the whole DNA.
+
+---
+
+## 4. How Interactions Work (with Symbols)
+
+### Inheritance (one strand influencing others)
+
+```
+[Brand]
+   │  "We are radically transparent"
+   │
+   ├──────────→ [Conversation]
+   │               ● Gene: "We never hide product limitations."
+   │
+   └──────────→ [Team]
+                   ● Gene: "Leaders share context by default."
+```
+
+Brand **inherits into** Conversation and Team as concrete rules.
+
+---
+
+### Conflict (when two strands pull opposite ways)
+
+```
+[Sales]          ↔          [Product]
+ "Close big deals"     vs   "Avoid custom one-offs"
+
+      ▲                             ▲
+      │                             │
+      └────── conflict hotspot ─────┘
+```
+
+Here you might mark a **⚠ conflict symbol** in your map:
+
+```
+[Sales] ⚠ [Product]
+```
+
+---
+
+### Constraint (one strand limiting another)
+
+```
+[Security] ──┬──|> constrains ───> [Product]
+             │
+             └──|> constrains ───> [Data]
+```
+
+Using `|>` or a lock 🔒 symbol:
+
+```
+[Security 🔒] ──|> [Product]
+               └─|> [Data]
+```
+
+This reminds you:\
+“Even if Product wants X, Security defines the safe boundary.”
+
+---
+
+## 5. The Structural Logic in One Formula
+
+In symbols:
+
+```
+DNA = ( Strands → Sequences → Genes ) × Alignment
+```
+
+Where:
+
+- **Strands** = [Brand] [Product] [Tech] …
+- **Sequences** = flows like [Product] → [UX] → [Tech] → [Ops]
+- **Genes** = ● rules sitting on those flows
+- **Alignment** = how well all of the above respect the Core DNA sentence
+
+High alignment ⇒ low entropy.
