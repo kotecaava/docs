@@ -1,0 +1,592 @@
+---
+title: "Customer support Strand"
+description: "How AI and humans interact in your product"
+---
+
+---
+
+## AI Support Layer – What AI Handles
+
+**Guiding question**
+
+> _How does AI assist or handle support interactions?_
+
+### Capabilities
+
+- Instantly answer common questions using **knowledge articles + semantic search**.
+- Draft responses for human agents to **approve or edit**.
+- Summarize long threads or conversations before escalation.
+- Predict **intent** and route tickets automatically.
+- Identify duplicates and **merge similar issues**.
+- Generate troubleshooting checklists based on user environment.
+
+### AI Personality
+
+- **Tone:** clear, polite, concise, neutral, professional.
+
+**Rules**
+
+- Never guess — **defer to humans** when unsure.
+- Be transparent about being an **AI assistant**.
+- Avoid promises that depend on **engineering timelines**.
+- Always provide **actionable next steps**.
+
+### Responsible AI Practices
+
+- AI never sees content the user **cannot access**.
+- Sensitive data **masked** automatically in logs.
+- Users can **escalate to human** at any moment.
+- All AI interactions logged to improve **future accuracy**.
+
+---
+
+## Human Support Layer – What Only Humans Do
+
+**Guiding question**
+
+> _What do human agents uniquely provide?_
+
+### Core Responsibilities
+
+- Empathy, emotional intelligence, reassurance, clarity.
+- Judgment when issues are **ambiguous or technical**.
+- Understanding of nuance, edge cases, and user history.
+- Building **trust and long-term relationships**.
+- Escalating **clearly documented issues** to product & engineering.
+
+### Skills Required
+
+- Strong written communication.
+- Patient and respectful tone.
+- Technical understanding of the product.
+- Ability to **triage urgency**.
+- Calm under pressure.
+- Structured problem analysis.
+
+### Playbook Structure
+
+- Ticket intake checklist.
+- Troubleshooting decision tree.
+- Edge-case handling.
+- AI suggestions review.
+- Customer follow-up.
+- Post-resolution summary.
+
+---
+
+## Knowledge System – The Brain Behind Support
+
+**Guiding question**
+
+> _How does the support team keep knowledge up to date?_
+
+### Components
+
+- **Knowledge base**
+  - Articles, guides, tutorials.
+  - Single source of truth for **AI and human agents**.
+- **Internal runbooks**
+  - Step-by-step fixes for recurring issues:
+    - auth problems,
+    - integrations,
+    - permissions,
+    - environment quirks.
+- **Tagging system**
+  - Tag by **product area, severity, persona, device, integration**.
+- **Feedback loop**
+  - Agents mark articles as **inaccurate or outdated**.
+  - Content team updates quickly.
+
+### AI Integration
+
+- AI auto-suggests **relevant articles**.
+- AI flags outdated content based on **ticket patterns**.
+- AI drafts article updates for **human review**.
+
+<info>
+  If support is constantly rewriting the same answer,\
+  your knowledge system — not your agents — is failing.
+</info>
+
+---
+
+## Tooling & Infrastructure – The Support Stack
+
+**Core Systems**
+
+- **CRM / Ticketing platform**
+  - Examples: Zendesk, Intercom, Freshdesk, Salesforce Service Cloud.
+  - Central hub for **issues, SLAs, assignment, history**.
+- **AI Copilot for Agents**
+  - Built-in LLM assistant or 3rd-party tools.
+  - Draft replies, summarize threads, classify tickets.
+- **Knowledge base CMS**
+  - Versioning, publishing workflows, content analytics.
+- **Monitoring & Logging**
+  - Examples: Sentry, Datadog, Grafana.
+  - Links **platform health** with support escalations.
+- **In-app support widget**
+  - AI chat, surfaced articles, escalation triggers.
+
+---
+
+## SLAs & Quality – What Users Can Rely On
+
+### SLA Tiers
+
+- **Free**
+  - Response time: **24–48 hours**
+  - Channels: Email, Knowledge base
+- **Paid**
+  - Response time: **4–8 hours**
+  - Channels: Email, Chat
+- **Enterprise**
+  - Response time: **≤ 1 hour**
+  - Channels: Slack Connect, Dedicated CSM
+
+### Quality Standards
+
+- Clear, correct, **human** responses.
+- No jargon unless necessary — and always **explained**.
+- Screenshots or **step-by-step guides** for complex flows.
+- Accurate interpretation of **logs and user intent**.
+- Escalations treated with **urgency and transparency**.
+
+### Tone Guidelines
+
+**Positive examples**
+
+- “I understand how that can be confusing — here’s what’s happening and how to fix it.”
+- “Thanks for your patience. Here’s what we found after reviewing your logs.”
+
+**Negative examples**
+
+- “This is not our fault.”
+- “You are using it wrong.”
+- “We can’t help with that.”
+
+---
+
+## 📈 Escalation Paths – How Serious Issues Move
+
+**Guiding question**
+
+> _How do unresolved or serious issues escalate?_
+
+### Escalation Steps
+
+- **Tier 0 → Tier 1** if AI cannot confidently answer.
+- **Tier 1 → Tier 2** for technical analysis or reproduction.
+- **Tier 2 → Engineering** if likely a bug or backend issue.
+- **Any tier → Security** if suspicious activity is detected.
+- **Enterprise → CSM** if the relationship is at risk.
+
+### Incident Response
+
+- Support alerts **SRE or on-call engineer**.
+- Issue logged in **incident tracker**.
+- Customers updated during incident every **30–60 minutes**.
+- Post-incident **RCA** shared with affected customers.
+
+---
+
+## 🔁 Feedback Loops – How Support Shapes the Product
+
+**Guiding question**
+
+> _How does support improve the product?_
+
+### Loops
+
+- Tag and categorize issues by **product area**.
+- Weekly feedback sync with **product and engineering**.
+- Support-led **“Top Issues”** report shared monthly.
+- AI-generated clustering of **frequent tickets**.
+- UX research reviews transcripts for **patterns**.
+
+### Product Influence
+
+- Bug prioritization.
+- Feature improvements.
+- Documentation updates.
+- Onboarding enhancements.
+
+<success>
+  Support is your **highest-fidelity product analytics**.\
+  If it doesn’t loop back into roadmap and UX, you’re wasting signal.
+</success>
+
+---
+
+## 📊 Metrics & Reporting – How Support Is Measured
+
+**Support Metrics**
+
+- First response time.
+- Full resolution time.
+- AI resolution rate (Tier 0 success).
+- Escalation rate (to Tier 2/3).
+- Ticket backlog.
+- Customer Satisfaction (**CSAT**).
+
+**Experience Metrics**
+
+- Effort score (how hard it was to get help).
+- Reopened ticket rate.
+- Time to first meaningful response (not just “we got your ticket”).
+- Drop-off rate from self-serve to human channels.
+
+---
+
+## 🚨 Risk & Governance – How Support Can Fail (and How You Prevent It)
+
+**Key Risks**
+
+- Over-reliance on AI causing **incorrect or insensitive answers**.
+- Missing or slow escalations for **critical incidents**.
+- Data leakage via support logs or screenshots.
+- Inconsistent responses across agents and regions.
+- Under-reporting of systemic issues to product and security.
+
+**Guardrails**
+
+- Clear policies on **when AI must hand off** to humans.
+- Mandatory escalation rules for **security, billing, and data-loss issues**.
+- Access controls and redaction for **sensitive data**.
+- Standardized macros and templates for **high-risk scenarios**.
+- Regular **QA reviews** and audits of support conversations.
+
+---
+
+## 🧩 How to Use This Customer Support Strand in Practice
+
+1. **Map your current reality**
+   - Export recent tickets.
+   - Tag them across **channels, tiers, product areas**.
+2. **Design your tiering + AI model**
+   - Decide what belongs in **Tier 0 AI** vs **Tier 1–3 humans**.
+   - Write explicit **handoff rules**.
+3. **Codify your knowledge system**
+   - Turn recurring answers into **articles and runbooks**.
+   - Connect them to both **AI and humans**.
+4. **Wire tooling + SLAs**
+   - Align CRM, AI copilot, KB, and monitoring into **one Support OS**.
+   - Make SLAs visible internally and in **customer commitments**.
+5. **Close the loop**
+   - Turn support data into **roadmap, UX, and doc changes** every cycle.
+   - Measure **AI vs human** resolution impact over time.
+
+---
+
+> **Screenshotable line:**\
+> **“Support is not just answering tickets — it’s the operating system that turns user pain into product advantage.”**
+
+```json
+{
+  "customer_support_strand": {
+    "workshop_meta": {
+      "framework_version": "customer-support-strand-v1.0",
+      "source_templates": [
+        "Support Purpose",
+        "Channels & Surfaces",
+        "Tiering Model",
+        "AI Support Layer",
+        "Human Support Layer",
+        "Knowledge System",
+        "Tooling & Infrastructure",
+        "SLAs & Quality",
+        "Escalation Paths",
+        "Feedback Loops",
+        "Metrics & Reporting",
+        "Risk & Governance"
+      ],
+      "facilitation_notes": [
+        "Run with support leadership, AI/ML team, product, data, and CX roles.",
+        "Map real support tickets, user complaints, and friction points before filling this JSON.",
+        "This JSON becomes the 'Support OS' driving playbooks, tooling, training, and AI systems."
+      ]
+    },
+
+    "purpose_and_role": {
+      "question": "Why does this support team exist?",
+      "answer": "Support ensures users stay unblocked, confident, and successful. It reduces friction, accelerates adoption, protects revenue, and transforms user pain into product insights. It is both a safety net and a strategic partner.",
+      "objectives": [
+        "Resolve issues quickly and accurately using AI + human expertise.",
+        "Educate customers and guide them toward best practices.",
+        "Capture structured insights that improve product, UX, and documentation.",
+        "Maintain trust with transparent communication and predictable responses."
+      ]
+    },
+
+    "support_channels_and_surfaces": {
+      "question": "Where and how do users request help?",
+      "channels": [
+        {
+          "channel": "In-app help panel",
+          "notes": "Primary channel; powered by AI bot, knowledge base, and escalation to human agents."
+        },
+        {
+          "channel": "Email support",
+          "notes": "Used for lower urgency issues, async communication, and multi-step questions."
+        },
+        {
+          "channel": "Live chat",
+          "notes": "For real-time troubleshooting, quick clarifications, and guidance."
+        },
+        {
+          "channel": "Community forums or user groups",
+          "notes": "Peer-to-peer help, “what worked for you?” answers, best practices."
+        },
+        {
+          "channel": "Slack Connect (for enterprise)",
+          "notes": "High-touch channel for VIP customers, success teams and technical escalations."
+        },
+        {
+          "channel": "Self-serve knowledge base",
+          "notes": "Articles, troubleshooting guides, getting-started flows, video walkthroughs."
+        }
+      ]
+    },
+
+    "tiering_model": {
+      "question": "How is support structured by complexity?",
+      "tiers": [
+        {
+          "name": "Tier 0 – AI Self-Service",
+          "responsibilities": [
+            "Instant answers from knowledge base and summaries.",
+            "Suggest workflow fixes or known solutions.",
+            "Collect required diagnostic info.",
+            "Resolve simple issues automatically."
+          ]
+        },
+        {
+          "name": "Tier 1 – General Support Agents",
+          "responsibilities": [
+            "Answer common questions not handled by AI.",
+            "Provide human empathy and clarity.",
+            "Perform basic troubleshooting.",
+            "Communicate clearly and set expectations."
+          ]
+        },
+        {
+          "name": "Tier 2 – Technical Support",
+          "responsibilities": [
+            "Handle advanced technical issues, integrations, APIs.",
+            "Debug logs, platform behavior, authentication issues.",
+            "Work with engineering on reproductions."
+          ]
+        },
+        {
+          "name": "Tier 3 – Engineering Escalation",
+          "responsibilities": [
+            "Fix underlying product bugs.",
+            "Support incident response and root-cause analysis.",
+            "Prioritize long-term product or infrastructure fixes."
+          ]
+        },
+        {
+          "name": "Tier X – Customer Success / Enterprise Support",
+          "responsibilities": [
+            "Guide enterprise onboarding.",
+            "Provide best practices and training.",
+            "Handle renewals, expansion, and adoption strategies."
+          ]
+        }
+      ]
+    },
+
+    "ai_support_layer": {
+      "question": "How does AI assist or handle support interactions?",
+      "capabilities": [
+        "Instantly answer common questions using knowledge articles and semantic search.",
+        "Draft responses for human agents to approve or edit.",
+        "Summarize long threads or conversations before escalation.",
+        "Predict intent and route tickets automatically.",
+        "Identify duplicates and merge similar issues.",
+        "Generate troubleshooting checklists based on user’s environment."
+      ],
+      "ai_personality": {
+        "tone": "Clear, polite, concise, neutral and professional.",
+        "rules": [
+          "Never guess — defer to human support when unsure.",
+          "Be transparent about being an AI assistant.",
+          "Avoid promises that depend on engineering timelines.",
+          "Always provide actionable next steps."
+        ]
+      },
+      "responsible_ai_practices": [
+        "AI never sees content the user cannot access.",
+        "Sensitive data masked automatically in logs.",
+        "User can escalate to human at any moment.",
+        "All AI feedback is logged and improves future accuracy."
+      ]
+    },
+
+    "human_support_layer": {
+      "question": "What do human agents uniquely provide?",
+      "responsibilities": [
+        "Empathy, emotional intelligence, reassurance and clarity.",
+        "Judgment when issues are ambiguous or technical.",
+        "Understanding of nuance, edge cases and user history.",
+        "Building trust and long-term relationships.",
+        "Escalating clearly documented issues to product & engineering."
+      ],
+      "skills_required": [
+        "Strong written communication",
+        "Patient and respectful tone",
+        "Technical understanding of product",
+        "Ability to triage urgency",
+        "Calm under pressure",
+        "Structured problem analysis"
+      ],
+      "playbook_structure": [
+        "Ticket intake checklist",
+        "Troubleshooting tree",
+        "Edge-case handling",
+        "AI suggestions review",
+        "Customer follow-up",
+        "Post-resolution summary"
+      ]
+    },
+
+    "knowledge_system": {
+      "question": "How does the support team keep knowledge up to date?",
+      "components": [
+        {
+          "name": "Knowledge base (articles, guides, tutorials)",
+          "notes": "Single source of truth for AI and human agents."
+        },
+        {
+          "name": "Internal runbooks",
+          "notes": "Steps for solving recurring issues (auth problems, integrations, permissions)."
+        },
+        {
+          "name": "Tagging system",
+          "notes": "Tag articles by product area, severity, persona, device, integration."
+        },
+        {
+          "name": "Feedback loop",
+          "notes": "Agents mark articles as inaccurate or outdated; content team updates quickly."
+        }
+      ],
+      "ai_integration": [
+        "AI auto-suggests relevant articles.",
+        "AI flags outdated content based on patterns in tickets.",
+        "AI-generated drafts for article updates with human review."
+      ]
+    },
+
+    "tooling_and_infrastructure": {
+      "systems": [
+        {
+          "tool": "CRM / Ticketing platform",
+          "examples": "Zendesk, Intercom, Freshdesk, Salesforce Service Cloud",
+          "notes": "Central hub for tracking issues, SLAs, assignment and history."
+        },
+        {
+          "tool": "AI Copilot for Agents",
+          "examples": "Built-in LLM assistant or third-party agent tools",
+          "notes": "Draft replies, summarize threads, classify tickets."
+        },
+        {
+          "tool": "Knowledge base CMS",
+          "notes": "Versioning, publishing workflows, analytics."
+        },
+        {
+          "tool": "Monitoring & Logging",
+          "examples": "Sentry, Datadog, Grafana",
+          "notes": "Links platform health with support escalations."
+        },
+        {
+          "tool": "In-app support widget",
+          "notes": "AI chat, articles, escalation triggers."
+        }
+      ]
+    },
+
+    "slas_and_quality": {
+      "slas": [
+        {
+          "plan": "Free",
+          "response_time": "24–48 hours",
+          "channels": ["Email", "Knowledge base"]
+        },
+        {
+          "plan": "Paid",
+          "response_time": "4–8 hours",
+          "channels": ["Email", "Chat"]
+        },
+        {
+          "plan": "Enterprise",
+          "response_time": "1 hour or less",
+          "channels": ["Slack Connect", "Dedicated CSM"]
+        }
+      ],
+      "quality_standards": [
+        "Clear, correct, human responses.",
+        "No jargon unless necessary, always explained.",
+        "Screenshots or step-by-step guides for complex flows.",
+        "Accurate interpretation of logs and user intent.",
+        "Treat escalations with urgency and transparency."
+      ],
+      "tone_guidelines": {
+        "positive_examples": [
+          "“I understand how that can be confusing — here’s what’s happening and how to fix it.”",
+          "“Thanks for your patience. Here’s what we found after reviewing your logs.”"
+        ],
+        "negative_examples": [
+          "“This is not our fault.”",
+          "“You are using it wrong.”",
+          "“We can’t help with that.”"
+        ]
+      }
+    },
+
+    "escalation_paths": {
+      "question": "How do unresolved or serious issues escalate?",
+      "steps": [
+        "Tier 0 → Tier 1 if AI cannot confidently answer.",
+        "Tier 1 → Tier 2 for technical analysis or reproduction.",
+        "Tier 2 → Engineering if root-cause likely a bug or backend issue.",
+        "Any tier → Security team if suspicious activity is detected.",
+        "Enterprise → CSM if customer relationship may be impacted."
+      ],
+      "incident_response": [
+        "Support alerts SRE or on-call engineer.",
+        "Issue added to incident tracker.",
+        "Customer updates during incident sent every 30–60 min.",
+        "Post-incident RCA sent to affected customers."
+      ]
+    },
+
+    "feedback_loops": {
+      "question": "How does support improve the product?",
+      "loops": [
+        "Tagging and categorizing issues by product area.",
+        "Weekly feedback sync with product and engineering.",
+        "Support-led ‘Top Issues’ report shared monthly.",
+        "AI-generated clustering of frequent tickets.",
+        "UX research reviews transcripts for patterns."
+      ],
+      "product_influence": [
+        "Bug prioritization",
+        "Feature improvements",
+        "Documentation updates",
+        "Onboarding enhancements"
+      ]
+    },
+
+    "metrics_and_reporting": {
+      "support_metrics": [
+        "First response time",
+        "Full resolution time",
+        "AI resolution rate",
+        "Escalation rate",
+        "Ticket backlog",
+        "Customer satisfaction (CSAT)"
+      ],
+      "experience_metrics": [
+        "Effort score (how hard it was to get help)",
+        "Reopened
+```

@@ -1,4 +1,876 @@
 ---
-title: 'AI Strand'
-description: 'How AI is integrated across all systems'
+title: "AI Strand"
+description: "How AI is integrated across all systems"
 ---
+
+---
+
+# AI Strand – The Collaborative Intelligence Layer
+
+**AI is not a feature — it’s the intelligence layer of your company.**
+
+The **AI Strand** defines how your company:
+
+- understands and summarizes information,
+- augments search and discovery,
+- automates workflows and decisions,
+- powers agents that act on behalf of users,
+- and does all of this **safely, explainably, and under governance**.
+
+This is your **AI OS**: the blueprint for how intelligence is applied **everywhere** in the product.
+
+---
+
+## 🧪 Workshop Meta – How to Design the AI Strand
+
+**Framework version:** `ai-strand-v1.0`
+
+**Templates this strand covers**
+
+- AI Purpose
+- AI Use Cases
+- AI Surfaces
+- Model Architecture
+- Data Inputs
+- AI Reasoning Abilities
+- Integration with Product Strands
+- Automation System
+- Agents & Bots
+- Privacy & Security
+- Governance & Guardrails
+- AI Performance Metrics
+- Human + AI Collaboration
+
+**Who should be in the room**
+
+- AI/ML
+- Data
+- Engineering
+- Product
+- Security & Compliance
+- Support / CX
+
+**Facilitation notes**
+
+- Start by reverse-engineering **actual AI features**:
+  - search,
+  - summaries,
+  - workflows,
+  - automation,
+  - agent actions.
+- This becomes the **AI OS** — how intelligence is **designed, deployed, and governed** across the company.
+
+---
+
+## 🎯 Purpose & Role – Why AI Exists
+
+**Guiding question**
+
+> _Why does AI exist inside Slack?_
+
+**Core answer**
+
+AI **amplifies human work** by:
+
+- summarizing information,
+- accelerating search,
+- automating repetitive tasks,
+- understanding intent,
+- enabling agents to interact with business systems on behalf of users.
+
+AI transforms Slack from a **communication tool** into a **collaborative intelligence layer**.
+
+**Objectives**
+
+- Reduce cognitive load in **complex, high-velocity communication**.
+- Surface the **right information at the right time**.
+- Automate workflows that previously required **manual coordination**.
+- Enable teams to work **asynchronously without losing context**.
+- Let users interact with **enterprise systems via natural language**.
+
+<info>
+  If AI doesn’t clearly reduce cognitive load or manual work,\
+  it’s decoration — not a strand.
+</info>
+
+---
+
+## 🧠 AI Use Cases – Where Intelligence Shows Up
+
+**Guiding question**
+
+> _What jobs does AI actually do inside the product?_
+
+### 1. Information Understanding
+
+**Capabilities**
+
+- Channel summaries (daily or on-demand).
+- Thread summaries.
+- Meeting / huddle summaries.
+- Canvas summarization.
+- Long-file summarization (PDFs, docs, etc.).
+
+---
+
+### 2. Search Intelligence
+
+**Capabilities**
+
+- Semantic search powered by embeddings.
+- Reranking search results based on relevance.
+- Federated search across **files, messages, and integrated systems**.
+- Query rewriting and query understanding.
+
+---
+
+### 3. Workflow Intelligence
+
+**Capabilities**
+
+- Suggest workflow automations.
+- Auto-fill workflow steps.
+- Extract structured data from conversations.
+- Trigger actions based on patterns in channels.
+
+---
+
+### 4. Agent Interactions
+
+**Capabilities**
+
+- AI agents that execute tasks:
+  - create tickets,
+  - update CRM,
+  - schedule meetings.
+- Multi-step reasoning to interact with APIs.
+- Slack-native bot personas and skills.
+- Agents that collaborate with each other in shared channels.
+
+---
+
+### 5. User Assistance
+
+**Capabilities**
+
+- Draft message generation.
+- Rewrite for clarity, tone, and conciseness.
+- Explain complex topics.
+- Translate messages.
+- Generate templates (announcements, standups, updates).
+
+---
+
+### 6. Security & Compliance
+
+**Capabilities**
+
+- Sensitive data detection.
+- Risky user behavior alerts.
+- Automated compliance checks.
+
+---
+
+## 🧩 AI Surfaces – Where Users Touch AI
+
+**Guiding question**
+
+> _Where does AI appear inside Slack?_
+
+### Primary Surfaces
+
+- **Search bar** – AI semantic search + summaries.
+- **Message composer** – drafts, rewrites, tone changes.
+- **Message actions** – “summarize thread”, “summarize channel”.
+- **Home tab** – AI insights and workflows.
+- **Workflow Builder** – AI step suggestions.
+- **Canvas** – AI tooling for documentation and synthesis.
+- **Files** – AI summaries of PDFs, docs, images.
+- **AI sidebar** – concierge, queries, and agent orchestration.
+
+<success>
+  AI should feel **ambient and contextual**, not like “a separate mode” users must go into.
+</success>
+
+---
+
+## 🏗 Model Architecture – How AI Is Built Under the Hood
+
+**Guiding question**
+
+> _How is Slack AI architected?_
+
+### Components
+
+- **Slack AI Core**
+  - Controls routing, memory, context packaging, and guardrails.
+- **LLM Layer**
+  - Models:
+    - Salesforce Einstein models.
+    - Partner LLMs (OpenAI, Anthropic, Cohere, etc.).
+    - Fine-tuned domain-specific models.
+  - Notes:
+    - Model is selected by **task type, data sensitivity, cost/latency**.
+- **Embedding Layer**
+  - Role:
+    - Generates semantic vectors for search and summarization.
+  - Stores:
+    - Vector DB embedded inside **Slack search architecture**.
+- **Context Management**
+  - Role:
+    - Retrieval, compression, and chunking of messages, threads, and files.
+- **AI Execution Engine**
+  - Role:
+    - Runs agents, multi-step workflows, and action sequences.
+
+---
+
+## 📥 Data Inputs – What AI Sees (and What It Doesn’t)
+
+**Guiding question**
+
+> _What data does AI use and how is it controlled?_
+
+### Data Sources
+
+- Messages.
+- Threads.
+- Channels.
+- Files.
+- Canvas documents.
+- Lists / projects.
+- Workflow logs.
+- Telemetric signals.
+- User preferences.
+
+### Privacy Controls
+
+- AI only accesses data users **already have permission** to view.
+- Workspace-level **admin controls** for AI features.
+- Enterprise Key Management (EKM) for encryption.
+- Model and data routing based on **compliance region**.
+
+### Excluded Data
+
+- Admin-only messages.
+- Private security logs.
+- Restricted channels unless the user is a member.
+
+<warning>
+  If users don’t trust **what AI can see**, they won’t trust what it says.
+</warning>
+
+---
+
+## 🧩 Reasoning Abilities – What AI Actually “Thinks” About
+
+**Guiding question**
+
+> _What cognitive tasks does Slack AI perform?_
+
+**Abilities**
+
+- Summarization.
+- Classification.
+- Semantic retrieval.
+- Intent detection.
+- Context distillation.
+- Step sequencing for workflows.
+- Natural language → structured logic mapping.
+- Query rewriting.
+
+---
+
+## 🌐 Integration with Other Strands – AI Everywhere, Not One Team
+
+### Product Strand
+
+- AI features embedded into:
+  - channels,
+  - search,
+  - workflows,
+  - canvas.
+
+### UX Strand
+
+- AI onboarding flows.
+- AI explainability surfaces.
+
+### UI Strand
+
+- AI buttons.
+- AI contextual menus.
+- AI sidebar.
+
+### Data Strand
+
+- Uses **semantic vectors** stored in search index.
+- Uses full **message + file corpus** (with access rules).
+
+### Support Strand
+
+- AI agent for **first-tier support**.
+- AI-suggested drafts for human agents.
+
+### Operations Strand
+
+- AI-based **incident routing**.
+- AI logs for **anomaly detection**.
+
+### Sales Strand
+
+- AI-generated ROI stories.
+- AI surfaces **usage insights** for sales reps.
+
+---
+
+## 🤖 Automation System – How AI Drives Automation
+
+**Guiding question**
+
+> _How does AI power automation inside Slack?_
+
+### Architecture
+
+- Workflow Builder + AI (no-code automation creation).
+- Bots triggered by message patterns.
+- Agent-based automations.
+- Scheduled digests and summaries.
+
+### Automation Types
+
+- Notifications based on events.
+- Approvals and routing.
+- Incident alerts.
+- Data extraction from conversations.
+- Running scripts or API calls.
+
+### Governance
+
+- Admin rules for workflows.
+- AI cannot execute **destructive actions** without confirmation.
+- Rate limiting on automations.
+
+---
+
+## 🧿 Agents & Bots – AI That Acts on Your Behalf
+
+**Guiding question**
+
+> _How do AI agents work inside Slack?_
+
+### Types of Agents
+
+#### Slack AI Concierge
+
+**Actions**
+
+- Search across workspace.
+- Summaries.
+- Draft replies.
+- Explain content.
+
+---
+
+#### Workflow Agents
+
+**Actions**
+
+- Trigger workflows.
+- Fill forms.
+- Coordinate multi-step automations.
+
+---
+
+#### Enterprise Bots
+
+**Actions**
+
+- Pull Salesforce data.
+- Create Jira tickets.
+- Update ServiceNow records.
+- Execute business actions via APIs.
+
+---
+
+### Rules
+
+- Agents log actions for **transparency**.
+- Agents cannot access **restricted channels**.
+- Admins can **disable or limit** agent capabilities.
+
+---
+
+## 🔐 Privacy & Security – AI with a Security Brain
+
+### Controls
+
+- User-level access permissions enforced **before AI processing**.
+- Encryption (EKM) for enterprise keys.
+- Data never leaves region if **residency rules** apply.
+- Model choice restricted for **sensitive content**.
+
+### Security Reviews
+
+- AI models audited.
+- Agent actions reviewed.
+- Workflows approved for **automation risk**.
+
+---
+
+## 🧱 Governance & Guardrails – How You Prevent AI Chaos
+
+### Policies
+
+- AI must be **opt-in** for enterprise customers.
+- Admins can set **visibility rules**.
+- No training on customer data unless **explicitly allowed**.
+- All AI decisions must be **reversible**.
+- Clear UI labeling for **AI-generated content**.
+
+### Risk Management
+
+- Hallucination detection.
+- Rate limiting on **expensive operations**.
+- Fallback to human review for **high-impact actions**.
+- Sandboxing for third-party AI apps.
+
+<info>
+  AI without governance is just a clever intern with root access.\
+  The AI Strand defines where the **guardrails** go.
+</info>
+
+---
+
+## 📊 AI Performance Metrics – How You Know It’s Working
+
+### Reliability
+
+- Latency for summaries.
+- Search latency impact.
+- Model uptime.
+
+### Accuracy
+
+- Summary correctness.
+- Search ranking quality.
+- Intent classification accuracy.
+
+### Adoption
+
+- Daily summary usage.
+- AI-assisted message drafting.
+- Workflow Builder AI step usage.
+
+### Business Outcomes
+
+- Reduced meeting load.
+- Faster onboarding.
+- Increased cross-team collaboration.
+
+---
+
+## 🧑‍💻 Human + AI Collaboration – Division of Labor
+
+**Principles**
+
+- AI handles the **heavy lifting**; humans make **final decisions**.
+- Users can **edit or override** any AI output.
+- AI surfaces **insights**; humans bring **judgment**.
+- AI explains the **“why”** behind summaries where possible.
+- Human feedback **directly improves** future AI performance.
+
+<success>
+  The goal is not to replace humans,\
+  but to move them **up the stack** — from typing and searching to deciding and designing.
+</success>
+
+---
+
+## 🧙‍♂️ AI Archetype – Who AI “Is” Inside Slack
+
+**Guiding question**
+
+> _What is the character of AI inside Slack?_
+
+- **Primary archetype:** Advisor
+- **Secondary archetype:** Accelerator
+
+**Rationale**
+
+> Slack AI is a **helpful advisor** who clarifies information\
+> and an **accelerator** who executes tasks and automates workflows —\
+> never overshadowing the human, always empowering them.
+
+---
+
+## 🧩 How to Use This AI Strand in Practice
+
+1. **Map current AI features**
+   - List every place AI already appears (search, composer, workflows, bots).
+   - Classify them into **use cases and surfaces** in this strand.
+2. **Define your AI architecture + data rules**
+   - Decide how models are selected,
+   - what data they can see,
+   - and where guardrails live.
+3. **Connect AI to other strands**
+   - For each Product, UX, Data, Support, and Sales initiative,
+   - ask: _“What does the AI version of this look like?”_
+4. **Instrument AI performance**
+   - Track reliability, accuracy, adoption, and **business outcomes**.
+   - Kill or rework AI that doesn’t move those needles.
+5. **Codify human-AI collaboration**
+   - Make override, feedback, and explainability **first-class UX**, not afterthoughts.
+
+---
+
+> **Screenshotable line:**\
+> **“Your AI Strand is not about having an AI feature — it’s about turning your entire product into a collaborative intelligence layer.”**
+
+```json
+{
+  "ai_strand": {
+    "workshop_meta": {
+      "framework_version": "ai-strand-v1.0",
+      "source_templates": [
+        "AI Purpose",
+        "AI Use Cases",
+        "AI Surfaces",
+        "Model Architecture",
+        "Data Inputs",
+        "AI Reasoning Abilities",
+        "Integration with Product Strands",
+        "Automation System",
+        "Agents & Bots",
+        "Privacy & Security",
+        "Governance & Guardrails",
+        "AI Performance Metrics",
+        "Human + AI Collaboration"
+      ],
+      "facilitation_notes": [
+        "Run with AI/ML, Data, Engineering, Product, Security, Compliance, and Support teams.",
+        "Start by reverse-engineering actual AI features in Slack: search, summaries, workflows, automation, agent actions.",
+        "This JSON becomes the AI OS — how intelligence is applied everywhere in the company."
+      ]
+    },
+
+    "purpose_and_role": {
+      "question": "Why does AI exist inside Slack?",
+      "answer": "AI amplifies human work by summarizing information, accelerating search, automating repetitive tasks, understanding intent, and enabling agents to interact with business systems on behalf of users. AI transforms Slack from a communication tool into a collaborative intelligence layer.",
+      "objectives": [
+        "Reduce cognitive load in complex, high-velocity communication.",
+        "Surface the right information at the right time.",
+        "Automate workflows that previously required manual coordination.",
+        "Enable teams to work asynchronously without losing context.",
+        "Empower users to interact with enterprise systems through natural language."
+      ]
+    },
+
+    "ai_use_cases": {
+      "categories": [
+        {
+          "name": "Information Understanding",
+          "capabilities": [
+            "Channel summaries (daily or on-demand)",
+            "Thread summaries",
+            "Meeting / huddle summaries",
+            "Canvas summarization",
+            "Long-file summarization"
+          ]
+        },
+        {
+          "name": "Search Intelligence",
+          "capabilities": [
+            "Semantic search powered by embeddings",
+            "Search result reranking based on relevance",
+            "Federated search across files, messages, and integrated systems",
+            "Query rewriting and understanding"
+          ]
+        },
+        {
+          "name": "Workflow Intelligence",
+          "capabilities": [
+            "Suggest workflow automations",
+            "Auto-fill workflow steps",
+            "Extract structured data from conversations",
+            "Trigger actions based on patterns in channels"
+          ]
+        },
+        {
+          "name": "Agent Interactions",
+          "capabilities": [
+            "AI agents that execute tasks (create tickets, update CRM, schedule meetings)",
+            "Multi-step reasoning to interact with APIs",
+            "Slack-native bot personas and skills",
+            "Agents that collaborate with each other in shared channels"
+          ]
+        },
+        {
+          "name": "User Assistance",
+          "capabilities": [
+            "Draft message generation",
+            "Rewrite for clarity, tone, conciseness",
+            "Explain complex topics",
+            "Translate messages",
+            "Generate templates (announcements, standups, updates)"
+          ]
+        },
+        {
+          "name": "Security & Compliance",
+          "capabilities": [
+            "Sensitive data detection",
+            "Risky user behavior alerts",
+            "Automated compliance checks"
+          ]
+        }
+      ]
+    },
+
+    "ai_surfaces": {
+      "question": "Where does AI appear inside Slack?",
+      "surfaces": [
+        "Search bar (AI semantic search + summaries)",
+        "Message composer (drafts, rewrites, tone changes)",
+        "Message actions (summarize thread, summarize channel)",
+        "Home tab (AI insights and workflows)",
+        "Workflow Builder (AI step suggestions)",
+        "Canvas (AI tooling for documentation)",
+        "Files (AI summaries of PDFs, docs, images)",
+        "AI sidebar (concierge and agent orchestration)"
+      ]
+    },
+
+    "model_architecture": {
+      "question": "How is Slack AI architected?",
+      "components": [
+        {
+          "name": "Slack AI Core",
+          "role": "Controls routing, memory, context packaging, and guardrails."
+        },
+        {
+          "name": "LLM Layer",
+          "models": [
+            "Salesforce Einstein models",
+            "Partner LLMs (e.g., OpenAI, Anthropic, Cohere)",
+            "Fine-tuned domain-specific models"
+          ],
+          "notes": "Model selection based on task type, data sensitivity, and cost/latency."
+        },
+        {
+          "name": "Embedding Layer",
+          "role": "Generates semantic vectors for search and summarization.",
+          "stores": "Vector DB embedded inside Slack search architecture."
+        },
+        {
+          "name": "Context Management",
+          "role": "Retrieval, compression, and chunking of messages, threads, and files."
+        },
+        {
+          "name": "AI Execution Engine",
+          "role": "Runs agents, multi-step workflows, and action sequences."
+        }
+      ]
+    },
+
+    "data_inputs": {
+      "question": "What data does AI use and how is it controlled?",
+      "data_sources": [
+        "Messages",
+        "Threads",
+        "Channels",
+        "Files",
+        "Canvas documents",
+        "Lists/projects",
+        "Workflow logs",
+        "Telemetric signals",
+        "User preferences"
+      ],
+      "privacy_controls": [
+        "AI only accesses data users already have permission to view.",
+        "Workspace-level admin controls for AI features.",
+        "Enterprise key management (EKM) for encryption.",
+        "Model and data routing based on compliance region."
+      ],
+      "excluded_data": [
+        "Admin-only messages",
+        "Private security logs",
+        "Restricted channels unless user is a member"
+      ]
+    },
+
+    "reasoning_abilities": {
+      "question": "What cognitive tasks does Slack AI perform?",
+      "abilities": [
+        "Summarization",
+        "Classification",
+        "Semantic retrieval",
+        "Intent detection",
+        "Context distillation",
+        "Step-sequencing for workflows",
+        "Natural language to structured logic mapping",
+        "Query rewriting"
+      ]
+    },
+
+    "integration_with_other_strands": {
+      "product": [
+        "AI features embedded into channels, search, workflows, canvas."
+      ],
+      "ux": [
+        "AI onboarding flows",
+        "AI explainability surfaces"
+      ],
+      "ui": [
+        "AI buttons",
+        "AI contextual menus",
+        "AI sidebar"
+      ],
+      "data": [
+        "Uses semantic vectors stored in search index",
+        "Uses message + file corpus"
+      ],
+      "support": [
+        "AI agent for first-tier support",
+        "AI suggestion drafts for human agents"
+      ],
+      "operations": [
+        "AI-based incident routing",
+        "AI logs for anomaly detection"
+      ],
+      "sales": [
+        "AI generates ROI stories",
+        "AI surfaces usage insights for sales reps"
+      ]
+    },
+
+    "automation_system": {
+      "question": "How does AI power automation inside Slack?",
+      "architecture": [
+        "Workflow Builder + AI (no-code automation creation)",
+        "Bots triggered by message patterns",
+        "Agent-based automations",
+        "Scheduled digests and summaries"
+      ],
+      "automation_types": [
+        "Notifications based on events",
+        "Approvals and routing",
+        "Incident alerts",
+        "Data extraction from conversations",
+        "Running scripts or API calls"
+      ],
+      "governance": [
+        "Admin rules for workflows",
+        "AI cannot execute destructive actions without confirmation",
+        "Rate limiting on automations"
+      ]
+    },
+
+    "agents_and_bots": {
+      "question": "How do AI agents work inside Slack?",
+      "types": [
+        {
+          "name": "Slack AI Concierge",
+          "actions": [
+            "Search across workspace",
+            "Summaries",
+            "Draft replies",
+            "Explain content"
+          ]
+        },
+        {
+          "name": "Workflow Agents",
+          "actions": [
+            "Trigger workflows",
+            "Fill forms",
+            "Coordinate multi-step automations"
+          ]
+        },
+        {
+          "name": "Enterprise Bots",
+          "actions": [
+            "Pull Salesforce data",
+            "Create Jira tickets",
+            "Update ServiceNow records",
+            "Execute business actions"
+          ]
+        }
+      ],
+      "rules": [
+        "Agents log actions for transparency.",
+        "Agents cannot access restricted channels.",
+        "Admins can disable agent capabilities."
+      ]
+    },
+
+    "privacy_and_security": {
+      "controls": [
+        "User-level access permissions enforced pre-AI processing.",
+        "Encryption (EKM) for enterprise keys.",
+        "Data never leaves region if residency rules apply.",
+        "Model choice restricted for sensitive content."
+      ],
+      "security_reviews": [
+        "AI models audited",
+        "Agent actions reviewed",
+        "Workflows approved for automation risk"
+      ]
+    },
+
+    "governance_and_guardrails": {
+      "policies": [
+        "AI must be opt-in for enterprise customers.",
+        "Admins can set visibility rules.",
+        "No training on customer data unless explicitly allowed.",
+        "All AI decisions must be reversible.",
+        "Clear UI labeling for AI-generated content."
+      ],
+      "risk_management": [
+        "Hallucination detection",
+        "Rate-limiting on expensive operations",
+        "Fallback to human review for high-impact actions",
+        "Sandboxing for third-party AI apps"
+      ]
+    },
+
+    "ai_performance_metrics": {
+      "reliability": [
+        "Latency for summaries",
+        "Search latency impact",
+        "Model uptime"
+      ],
+      "accuracy": [
+        "Summary correctness",
+        "Search ranking quality",
+        "Intent classification accuracy"
+      ],
+      "adoption": [
+        "Daily summary usage",
+        "AI-assisted message drafting",
+        "Workflow Builder AI step usage"
+      ],
+      "business_outcomes": [
+        "Reduced meeting load",
+        "Faster onboarding",
+        "Increased cross-team collaboration"
+      ]
+    },
+
+    "human_ai_collaboration": {
+      "principles": [
+        "AI handles the heavy lifting; humans make final decisions.",
+        "Users can edit or override any AI output.",
+        "AI surfaces insights; humans bring judgment.",
+        "AI explains ‘why’ behind summaries.",
+        "Human feedback directly strengthens future AI performance."
+      ]
+    },
+
+    "ai_archetype": {
+      "question": "What is the character of AI inside Slack?",
+      "primary_archetype": "Advisor",
+      "secondary_archetype": "Accelerator",
+      "rationale": "Slack AI is a helpful advisor who clarifies information and an accelerator who executes tasks and automates workflows — never overshadowing the human, always empowering them."
+    }
+  }
+}
+```

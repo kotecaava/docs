@@ -1,4 +1,653 @@
 ---
-title: 'Security Strand'
-description: 'How you protect data, users, and systems'
+title: "Security Strand"
+description: "How you protect data, users, and systems"
 ---
+
+---
+
+# Security Strand – The Enterprise Trust OS
+
+**If users don’t trust you, nothing else in your product matters.**
+
+The **Security Strand** defines how your company:
+
+- protects data at every layer,
+- controls identity and access,
+- secures apps and infrastructure,
+- governs AI use,
+- and responds to incidents with **speed and transparency**.
+
+Think of this as your **Security OS** — the canonical blueprint used by engineering, product, operations, and AI.
+
+---
+
+## 🧪 Workshop Meta – How to Design the Security Strand
+
+**Framework version:** `security-strand-v1.0`
+
+**Templates this strand covers**
+
+- Security Philosophy
+- Data Protection Architecture
+- Identity & Access
+- Application Security
+- Infrastructure Security
+- Compliance & Certifications
+- Incident Response
+- Governance & Monitoring
+- AI-Specific Security Layer
+- Zero Trust Policies
+- Admin Controls
+- Mobile & Device Security
+
+**Who should be in the room**
+
+- Security Engineering
+- Product Security
+- IT / Corporate Security
+- DevOps / Platform
+- Data Governance
+- Compliance / Legal
+
+**Facilitation notes**
+
+- Must reflect **both**:
+  - Slack core system security, and
+  - Salesforce’s broader **enterprise security stack**.
+- Treat this as the **canonical Security OS** – referenced by:
+  - engineering,
+  - product,
+  - AI/ML,
+  - and operations.
+
+---
+
+## 🎯 Security Philosophy – How Slack Thinks About Security
+
+**Guiding question**
+
+> _What is Slack’s fundamental approach to security?_
+
+**Core answer**
+
+Security is designed as an **end-to-end system** combining:
+
+- encryption,
+- compliance,
+- identity,
+- monitoring,
+- and operational rigor.
+
+Slack follows a **Zero Trust model**, enforces **least privilege**, and embeds security into the **product lifecycle**.
+
+Customer data is protected through:
+
+- encryption,
+- access controls,
+- secure infrastructure,
+- and continuous monitoring.
+
+### Core Principles
+
+- Security-by-design in every product decision.
+- Least privilege access everywhere.
+- Zero Trust networking and identity gating.
+- Customer control over data visibility and administration.
+- Transparency via clear logging and auditing of activity.
+- Defense-in-depth across **every system layer**.
+
+---
+
+## 🔐 Data Protection – How Data Is Encrypted, Stored, and Retired
+
+### Encryption
+
+- **In transit**
+  - TLS 1.2+ for all traffic between:
+    - clients,
+    - Slack servers,
+    - and integrations.
+- **At rest**
+  - AWS KMS–backed **AES-256 encryption** for all stored data.
+- **Enterprise Key Management (EKM)**
+  - Customers can use their **own encryption keys**.
+  - Capabilities:
+    - Key revocation to immediately unread messages/files.
+    - Granular per-channel key control.
+    - Audit visibility via **EKM logs**.
+
+---
+
+### Data Residency
+
+- Supported regions:
+  - US
+  - EU
+  - UK
+  - Japan
+  - Australia
+  - Canada
+- Controls:
+  - Admins can **pin default residency** for all workspace data.
+
+---
+
+### Data Lifecycle
+
+- Configurable **retention policies per channel**.
+- Message/file deletion rules.
+- Customer-configurable **legal hold**.
+- Controlled backups with **encrypted snapshots**.
+
+---
+
+## 🪪 Identity & Access – Who Gets In, and What They See
+
+### Authentication
+
+- SAML 2.0 SSO.
+- SCIM provisioning.
+- OAuth 2.0 for apps.
+- Two-factor authentication (2FA).
+- Enterprise Mobility Management (EMM).
+
+### Authorization
+
+- Granular roles:
+  - Admin, Owner, Member, Guest.
+- Channel-level access control.
+- App permission scopes with **least privilege**.
+
+### Zero Trust Layer
+
+**Principles**
+
+- Device posture checks for enterprise clients.
+- Continuous authentication.
+- Session invalidation on **suspicious activity**.
+
+**Integrations**
+
+- Okta.
+- Azure AD.
+- OneLogin.
+
+<info>
+  Security is not just **who you are**, but **where you are, what you’re using, and what you’re trying to do**.
+</info>
+
+---
+
+## 🧱 Application Security – How the Product Itself Is Hardened
+
+### Secure SDLC
+
+- Threat modeling for new features.
+- Security reviews for code changes.
+- Static and dynamic code scanning.
+- Red team testing.
+
+### API Security
+
+- Rate limiting.
+- OAuth authorization layers.
+- Signed requests for slash commands.
+- Scoped bot tokens.
+
+### App Review Process
+
+- Marketplace apps go through **strict review**.
+- Security testing of OAuth scopes.
+- Verification of **data handling practices**.
+
+---
+
+## 🏗 Infrastructure Security – The Foundation
+
+### Hosting
+
+- Slack is hosted on **AWS** with multi-layered **network segmentation**.
+
+### Controls
+
+- Multi-tenant isolation.
+- DDoS protection.
+- Secrets management via **Hashicorp Vault**.
+- Automated container patching.
+- Continuous vulnerability scanning.
+
+### Monitoring
+
+- Real-time anomaly detection.
+- SIEM alerts.
+- Intrusion detection systems.
+- Log analysis for **suspicious patterns**.
+
+---
+
+## 📜 Compliance & Certifications – Proof of Security Posture
+
+### Certifications
+
+- SOC 2 Type II.
+- SOC 3.
+- ISO 27001.
+- ISO 27017.
+- ISO 27018.
+- FedRAMP Moderate.
+- HIPAA.
+- FINRA Compliance Support.
+
+### Data Processing Agreements
+
+- GDPR-compliant terms.
+- CCPA data protections.
+- Regional data privacy adherence.
+
+### Enterprise Controls
+
+- Admin audit logs.
+- DLP (Data Loss Prevention) integrations.
+- eDiscovery integrations.
+- Legal hold enforcement.
+
+---
+
+## 🚨 Incident Response – When Things Go Wrong
+
+**Guiding question**
+
+> _How does Slack respond to security incidents?_
+
+**Core answer**
+
+Slack maintains a **24/7 incident response team**, runs **tabletop exercises**, leverages **automated detection systems**, and publishes **post-incident security reports** to impacted customers.
+
+### Process
+
+1. Detection.
+2. Triage.
+3. Containment.
+4. Eradication.
+5. Recovery.
+6. Post-incident analysis.
+
+### Customer Notifications
+
+- Immediate outreach when **high-risk incidents** occur.
+- Impact reports for **enterprise accounts**.
+- Dedicated **Slack Connect channels** with enterprise security teams.
+
+<warning>
+  Security incidents are inevitable.\
+  Security **cover-ups** are optional.
+</warning>
+
+---
+
+## 🧭 Governance, Monitoring & Controls – The Control Plane
+
+### Admin Controls
+
+- Granular permissions for owners/admins.
+- Session management and forced logouts.
+- IP allowlists.
+- Device restrictions.
+- Ability to disable:
+  - file uploads,
+  - external sharing.
+
+### Logging & Auditing
+
+- User activity logs.
+- Message access logs.
+- App installation logs.
+- Workflow execution logs.
+- **AI feature usage logs**.
+
+### Risk Management
+
+- Continuous compliance automation.
+- Vendor risk reviews.
+- Penetration testing.
+- Security awareness training for employees.
+
+---
+
+## 🤖 AI Security Layer – Security for the Intelligence Stack
+
+### Model Safety
+
+- AI models only process data users can **already access**.
+- AI **cannot override** enterprise EKM encryption.
+- AI decisions logged for **auditability**.
+
+### Privacy Controls
+
+- Admin toggle to enable/disable AI features.
+- Workspace-level restrictions for **channel summaries**.
+- No training on customer data without **explicit opt-in**.
+
+### Safe Outputs
+
+- Hallucination detection heuristics.
+- Tone and factuality rules.
+- AI suggestions clearly **labeled** for transparency.
+
+<info>
+  You don’t bolt security onto AI;\
+  you extend your **existing Security OS** into the AI layer.
+</info>
+
+---
+
+## 📱 Mobile & Device Security – Beyond the Desktop
+
+### Controls
+
+- Passcode enforcement.
+- Device-level encryption.
+- EMM mobile policy enforcement.
+- Remote wipe via MDM.
+- Biometric unlock support.
+
+---
+
+## 📈 Security Maturity Indicators – Are We Getting Better?
+
+### Metrics
+
+- Time to detect.
+- Time to contain.
+- Patch deployment velocity.
+- Pen-test score improvements.
+- False positive rate on anomaly alerts.
+
+### North Star
+
+> **Be the most trusted enterprise collaboration platform in the world, with defensible, transparent, auditable security at every layer.**
+
+---
+
+## 🧙‍♂️ Security Archetype – Who Security “Is”
+
+- **Primary archetype:** Guardian
+- **Secondary archetype:** Architect
+
+**Rationale**
+
+> Slack security is protective, transparent, systematic, and anticipatory —\
+> balancing **user freedom** with **enterprise-grade control**.
+
+---
+
+## 🧩 How to Use This Security Strand in Practice
+
+1. **Map your current controls**
+   - Encryption, identity, infra, app, AI, devices.
+   - Identify where policy is **implicit** instead of written.
+2. **Tie security into every strand**
+   - Product, Tech, Data, AI, Operations, Sales.
+   - Make security **invisible but ever-present** in their workflows.
+3. **Codify incident + AI safety playbooks**
+   - Response runbooks.
+   - AI guardrails and escalation paths.
+4. **Instrument maturity**
+   - Track detection, containment, and patch speed.
+   - Review security metrics like you review **revenue metrics**.
+5. **Communicate trust**
+   - Turn this strand into **externally shareable narratives**
+   - for enterprise buyers, auditors, and regulators.
+
+---
+
+> **Screenshotable line:**\
+> **“Your Security Strand is not just about avoiding breaches — it’s the operating system that makes trust a competitive advantage.”**
+
+```json
+{
+  "security_strand": {
+    "workshop_meta": {
+      "framework_version": "security-strand-v1.0",
+      "source_templates": [
+        "Security Philosophy",
+        "Data Protection Architecture",
+        "Identity & Access",
+        "Application Security",
+        "Infrastructure Security",
+        "Compliance & Certifications",
+        "Incident Response",
+        "Governance & Monitoring",
+        "AI-Specific Security Layer",
+        "Zero Trust Policies",
+        "Admin Controls",
+        "Mobile & Device Security"
+      ],
+      "facilitation_notes": [
+        "Run with Security Engineering, Product Security, IT, DevOps, Data Governance, and Compliance.",
+        "Must reflect BOTH Slack core system security AND Salesforce enterprise security stack.",
+        "Treat this JSON as the canonical Security OS — used across engineering, product, and AI."
+      ]
+    },
+
+    "security_philosophy": {
+      "question": "What is Slack’s fundamental approach to security?",
+      "answer": "Security is designed as an end-to-end system combining encryption, compliance, identity, monitoring, and operational rigor. Slack follows a zero-trust model, enforces least privilege, and embeds security into the product lifecycle. Customer data is protected through encryption, access controls, secure infrastructure, and continuous monitoring.",
+      "core_principles": [
+        "Security-by-design in every product decision.",
+        "Least privilege access everywhere.",
+        "Zero Trust networking and identity gating.",
+        "Customer control over data visibility and administration.",
+        "Transparency: clear logging and auditing of activity.",
+        "Defense-in-depth across every system layer."
+      ]
+    },
+
+    "data_protection": {
+      "encryption": {
+        "in_transit": "TLS 1.2+ for all traffic between clients, Slack servers, and integrations.",
+        "at_rest": "AWS KMS–backed AES-256 encryption for all stored data.",
+        "enterprise_key_management": {
+          "ekm": "Enterprise Key Management allows customers to use their own encryption keys.",
+          "capabilities": [
+            "Key revocation to immediately unread messages/files.",
+            "Granular per-channel key control.",
+            "Audit visibility via EKM logs."
+          ]
+        }
+      },
+      "data_residency": {
+        "regions": [
+          "US",
+          "EU",
+          "UK",
+          "Japan",
+          "Australia",
+          "Canada"
+        ],
+        "controls": "Admins can pin default residency for all workspace data."
+      },
+      "data_lifecycle": [
+        "Configurable retention policies per channel.",
+        "Message/file deletion rules.",
+        "Customer-configurable legal hold.",
+        "Controlled backups with encrypted snapshots."
+      ]
+    },
+
+    "identity_and_access": {
+      "authentication": [
+        "SAML 2.0 SSO",
+        "SCIM provisioning",
+        "OAuth 2.0 for apps",
+        "Two-factor authentication",
+        "Enterprise Mobility Management (EMM)"
+      ],
+      "authorization": [
+        "Granular roles (Admin, Owner, Member, Guest)",
+        "Channel-level access control",
+        "App permission scopes with least privilege"
+      ],
+      "zero_trust": {
+        "principles": [
+          "Device posture checks for enterprise clients",
+          "Continuous authentication",
+          "Session invalidation on suspicious activity"
+        ],
+        "integrations": [
+          "Okta",
+          "Azure AD",
+          "OneLogin"
+        ]
+      }
+    },
+
+    "application_security": {
+      "secure_sd_lc": [
+        "Threat modeling for new features",
+        "Security reviews for code changes",
+        "Static and dynamic code scanning",
+        "Red team testing"
+      ],
+      "api_security": [
+        "Rate limiting",
+        "OAuth authorization layers",
+        "Signed requests for slash commands",
+        "Scoped bot tokens"
+      ],
+      "app_review_process": [
+        "Marketplace apps go through strict review",
+        "Security testing of OAuth scopes",
+        "Verification of data handling practices"
+      ]
+    },
+
+    "infrastructure_security": {
+      "hosting": "Slack is hosted on AWS with multi-layered network segmentation.",
+      "controls": [
+        "Multi-tenant isolation",
+        "DDoS protection",
+        "Secrets management via Hashicorp Vault",
+        "Automated container patching",
+        "Continuous vulnerability scanning"
+      ],
+      "monitoring": [
+        "Real-time anomaly detection",
+        "SIEM alerts",
+        "Intrusion detection systems",
+        "Log analysis for suspicious patterns"
+      ]
+    },
+
+    "compliance_and_certifications": {
+      "certifications": [
+        "SOC 2 Type II",
+        "SOC 3",
+        "ISO 27001",
+        "ISO 27017",
+        "ISO 27018",
+        "FedRAMP Moderate",
+        "HIPAA",
+        "FINRA Compliance Support"
+      ],
+      "data_processing_agreements": [
+        "GDPR compliant terms",
+        "CCPA data protections",
+        "Regional data privacy adherence"
+      ],
+      "enterprise_controls": [
+        "Admin audit logs",
+        "DLP (Data Loss Prevention) integrations",
+        "eDiscovery integrations",
+        "Legal hold enforcement"
+      ]
+    },
+
+    "incident_response": {
+      "question": "How does Slack respond to security incidents?",
+      "answer": "Slack maintains a 24/7 incident response team, runs tabletop exercises, utilizes automated detection systems, and publishes post-incident security reports to impacted customers.",
+      "process": [
+        "Detection",
+        "Triage",
+        "Containment",
+        "Eradication",
+        "Recovery",
+        "Post-incident analysis"
+      ],
+      "customer_notifications": [
+        "Immediate outreach when high-risk incidents occur",
+        "Impact reports for enterprise accounts",
+        "Dedicated Slack Connect channels with enterprise security teams"
+      ]
+    },
+
+    "governance_monitoring_and_controls": {
+      "admin_controls": [
+        "Granular permissions for owners/admins",
+        "Session management and forced logouts",
+        "IP allowlists",
+        "Device restrictions",
+        "Disable file uploads or external sharing"
+      ],
+      "logging_and_auditing": [
+        "User activity logs",
+        "Message access logs",
+        "App installation logs",
+        "Workflow execution logs",
+        "AI feature usage logs"
+      ],
+      "risk_management": [
+        "Continuous compliance automation",
+        "Vendor risk reviews",
+        "Penetration testing",
+        "Security awareness training for employees"
+      ]
+    },
+
+    "ai_security_layer": {
+      "model_safety": [
+        "AI models only process data users can already access.",
+        "AI cannot override enterprise EKM encryption.",
+        "AI decisions logged for auditability."
+      ],
+      "privacy_controls": [
+        "Admin toggle to enable/disable AI features",
+        "Workspace-level restrictions for channel summaries",
+        "No training on customer data without explicit opt-in"
+      ],
+      "safe_outputs": [
+        "Hallucination detection heuristics",
+        "Tone and factuality rules",
+        "AI suggestions labeled for transparency"
+      ]
+    },
+
+    "mobile_and_device_security": {
+      "controls": [
+        "Passcode enforcement",
+        "Device-level encryption",
+        "EMM mobile policy enforcement",
+        "Remote wipe via MDM",
+        "Biometric unlock support"
+      ]
+    },
+
+    "security_maturity_indicators": {
+      "metrics": [
+        "Time to detect",
+        "Time to contain",
+        "Patch deployment velocity",
+        "Pen-test score improvements",
+        "False positive rate on anomaly alerts"
+      ],
+      "north_star": "Be the most trusted enterprise collaboration platform in the world, with defensible, transparent, auditable security at every layer."
+    },
+
+    "security_archetype": {
+      "primary_archetype": "Guardian",
+      "secondary_archetype": "Architect",
+      "rationale": "Slack security is protective, transparent, systematic, and anticipatory — balancing user freedom with enterprise-grade control."
+    }
+  }
+}
+```

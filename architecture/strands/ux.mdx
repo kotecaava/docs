@@ -1,4 +1,498 @@
 ---
-title: 'UX Strand'
-description: 'User flows, interaction patterns, and navigation'
+title: "UX Strand"
+description: "User flows, interaction patterns, and navigation"
 ---
+
+---
+
+#  UX Strand – Experience System
+
+UX is the layer that **turns product mechanics into human experience**.\
+This strand defines how people understand the product, move through it, and feel while using it.
+
+---
+
+## 🧪 Workshop Meta
+
+<note>
+  Run this strand with **product, UX, UI, research, data, support and customer success** in the same room. Use it as the **UX operating system** — it should guide flows, copy, design reviews and iteration.
+</note>
+
+### Framework version
+
+- `ux-strand-v1.0`
+
+### Source templates in this strand
+
+- UX Purpose & Role
+- Experience Principles
+- Personas & Contexts
+- User Journeys
+- Flows & Scenarios
+- Information Architecture
+- Content & Communication
+- Error & Edge Cases
+- Accessibility in UX
+- Measurement & Feedback
+- Governance & Rituals
+
+### Facilitation notes
+
+- Run with product, UX, UI, research, data, support and customer success.
+- Anchor decisions in **real user behavior, sessions and tickets**, not opinions.
+- Use this as the **UX operating system**: it should drive flows, copy and design reviews.
+
+---
+
+## 1. Purpose & Role of UX
+
+**Question:**\
+What is the role of UX in this product?
+
+**Answer:**\
+UX exists to make complex, collaborative work feel understandable, predictable and humane. It connects user needs to product behavior so people can focus on their work instead of fighting the tool.
+
+### UX objectives
+
+- Help users build a **clear mental model** of how the product works within their first sessions.
+- Enable key workflows to be **discoverable, learnable and efficient across devices**.
+- Support both **real-time and asynchronous collaboration** without overwhelming users.
+
+---
+
+## 2. Experience Principles
+
+**Question:**\
+Which principles should every experience, flow and screen follow?
+
+### Core principles
+
+1. **Clarity over cleverness**\
+   Users should always know **where they are**, **what just happened** and **what they can do next**.
+2. **Flow, not friction**\
+   Interactions should help users stay in the **flow of their work**, avoiding unnecessary context switches.
+3. **Conversation as a canvas**\
+   Work is centred around conversations; UX should treat **threads, updates and async communication** as the backbone of workflows.
+4. **Progressive depth**\
+   Start simple, reveal complexity only when needed. Power users can go deep **without overwhelming newcomers**.
+5. **Human tone and feedback**\
+   Errors, confirmations and system messages should feel **human, respectful and actionable**.
+6. **Async by default**\
+   The experience should support **time-shifted work** so users don’t need to be online at the same time to stay aligned.
+
+---
+
+## 3. Personas & Contexts
+
+**Question:**\
+Who are we designing experiences for and in what contexts?
+
+### Primary personas
+
+#### Individual contributor
+
+**Goals**
+
+- Stay on top of relevant work **without drowning in notifications**.
+- Find information and decisions quickly.
+- Contribute updates and decisions with minimal overhead.
+
+**Frustrations**
+
+- Too many tools and channels to check.
+- **Loss of context** when switching tasks or devices.
+
+---
+
+#### 👤 Team lead / manager
+
+**Goals**
+
+- Keep the team aligned **without micromanaging**.
+- See the **status of projects at a glance**.
+- Resolve issues and **unblock people quickly**.
+
+**Frustrations**
+
+- Needing to ask for updates repeatedly.
+- Hidden work and decisions in **private channels or tools**.
+
+---
+
+#### 👤 Cross-functional collaborator
+
+**Goals**
+
+- Coordinate work with other teams or companies.
+- Share updates and documents **in one place**.
+- Understand how decisions affect their part of the work.
+
+**Frustrations**
+
+- Different tools and norms in each team.
+- Missing context when **joining conversations late**.
+
+---
+
+### Usage contexts
+
+- Deep focus work at a desk.
+- Context-switching between meetings.
+- Mobile catch-up while commuting or away from desk.
+- Async collaboration across time zones.
+
+---
+
+## 4. User Research
+
+**Question:**\
+How do we ground UX decisions in real user insight?
+
+### Methods
+
+- Generative interviews with different roles and company sizes.
+- Usability testing of key flows (remote and in-person).
+- Diary studies or longitudinal studies for long-running projects.
+- Analysis of support tickets and help center searches.
+- Instrumentation and behavioral analytics of core flows.
+
+### Cadence
+
+- **Monthly** discovery sessions on upcoming themes.
+- **Continuous** usability testing for in-flight designs.
+- **Quarterly** “state of UX” review summarizing key findings.
+
+### Research repository
+
+- **Location:** `internal/research-repo`
+- **Notes:** All insights tagged by persona, job-to-be-done, and product area to **reuse learnings across teams**.
+
+---
+
+## 5. Information Architecture
+
+**Question:**\
+How is information organized so users can build a stable mental model?
+
+### Core structures
+
+#### 5.1 Spaces / Workspaces / Orgs
+
+- **Role:** Top-level boundaries for teams or companies.
+- **Notes:** Users should always know which space they are operating in and **which people have access**.
+
+#### 5.2 Channels / Topics / Rooms
+
+- **Role:** Primary containers for thematic or team-based conversations and work.
+- **Notes:** Each meaningful initiative, team or relationship gets its own **long-lived channel**.
+
+#### 5.3 Threads / Sub-conversations
+
+- **Role:** Focused discussions inside a larger stream.
+- **Notes:** Threads prevent **timeline clutter** while keeping context attached to the origin.
+
+#### 5.4 Artifacts (documents, lists, tasks, canvases)
+
+- **Role:** Persistent content linked to conversations.
+- **Notes:** Artifacts should be **easily discoverable from related conversations**.
+
+---
+
+### Navigation model
+
+**Primary questions**
+
+- Where do I go to pick up **the most important things for me**?
+- Where do I put something so **others will find it later**?
+- How do I know whether I’m seeing **everything relevant to my role**?
+
+**Answers**
+
+- **Home or main view** surfaces a prioritized mix of activity and focus.
+- Clear guidance on **naming and structuring** spaces/channels/artifacts.
+- **Filters and personalization** (muting, starring, sections) that keep IA flexible but coherent.
+
+---
+
+## 6. Flows & Scenarios
+
+**Question:**\
+What are the critical user flows and how are they shaped?
+
+### 6.1 Onboarding & first-week experience
+
+**Goal**\
+Get new users to **basic proficiency and value quickly**.
+
+**Key steps**
+
+- Join workspace / space.
+- Guided tour and “do this now” tasks.
+- First message sent / reaction added.
+- First channel joined and first search performed.
+- Optional: set notifications and preferences.
+
+**Success indicators**
+
+- User completes a small set of guided actions.
+- User understands differences between **spaces/channels/DMs**.
+- User returns on **day 2 and day 7**.
+
+---
+
+### 6.2 Catch-up after time away
+
+**Goal**\
+Let users quickly understand **what changed while they were gone**.
+
+**Key steps**
+
+- Open workspace and see **prioritized summary of activity**.
+- Review mentions, decisions, and key updates.
+- Jump into relevant threads for deeper context.
+
+**Success indicators**
+
+- User can feel “caught up” in **minutes, not hours**.
+- Reduced need to ask others “what did I miss?”.
+
+---
+
+### 6.3 Run a project in channels
+
+**Goal**\
+Coordinate cross-functional work with **clear accountability**.
+
+**Key steps**
+
+- Create or join project channel.
+- Pin or link key artifacts (docs, lists, milestones).
+- Share updates, decisions and blockers in a consistent format.
+- Record decisions and outcomes where everyone can find them.
+
+**Success indicators**
+
+- Project updates are **visible and searchable** in one place.
+- Stakeholders can see **status and next steps at a glance**.
+- Decisions and outcomes are **documented in the channel**, not lost in DMs.
+
+---
+
+## 🔁 How to Use This Strand
+
+- Treat this page as the **source of truth** for UX decisions.
+- When debating flows, copy or IA, **point back to this strand**.
+- Update it after major research rounds or product shifts so UX stays **alive and aligned** with reality.
+
+```json
+{
+  "ux_strand": {
+    "workshop_meta": {
+      "framework_version": "ux-strand-v1.0",
+      "source_templates": [
+        "UX Purpose & Role",
+        "Experience Principles",
+        "Personas & Contexts",
+        "User Journeys",
+        "Flows & Scenarios",
+        "Information Architecture",
+        "Content & Communication",
+        "Error & Edge Cases",
+        "Accessibility in UX",
+        "Measurement & Feedback",
+        "Governance & Rituals"
+      ],
+      "facilitation_notes": [
+        "Run with product, UX, UI, research, data, support and customer success.",
+        "Anchor decisions in real user behavior, sessions and tickets, not opinions.",
+        "Use this as the UX operating system: it should drive flows, copy and design reviews."
+      ]
+    },
+
+    "purpose_and_role": {
+      "question": "What is the role of UX in this product?",
+      "answer": "UX exists to make complex, collaborative work feel understandable, predictable and humane. It connects user needs to product behavior so people can focus on their work instead of fighting the tool.",
+      "objectives": [
+        "Help users build a clear mental model of how the product works within their first sessions.",
+        "Enable key workflows to be discoverable, learnable and efficient across devices.",
+        "Support both real-time and asynchronous collaboration without overwhelming users."
+      ]
+    },
+
+    "experience_principles": {
+      "question": "Which principles should every experience, flow and screen follow?",
+      "principles": [
+        {
+          "name": "Clarity over cleverness",
+          "description": "Users should always know where they are, what just happened and what they can do next."
+        },
+        {
+          "name": "Flow, not friction",
+          "description": "Interactions should help users stay in the flow of their work, avoiding unnecessary context switches."
+        },
+        {
+          "name": "Conversation as a canvas",
+          "description": "Work is centred around conversations; UX should treat threads, updates and async communication as the backbone of workflows."
+        },
+        {
+          "name": "Progressive depth",
+          "description": "Start simple, reveal complexity only when needed. Power users can go deep without overwhelming newcomers."
+        },
+        {
+          "name": "Human tone and feedback",
+          "description": "Errors, confirmations and system messages should feel human, respectful and actionable."
+        },
+        {
+          "name": "Async by default",
+          "description": "The experience should support time-shifted work so users don’t need to be online at the same time to stay aligned."
+        }
+      ]
+    },
+
+    "personas_and_contexts": {
+      "question": "Who are we designing experiences for and in what contexts?",
+      "primary_personas": [
+        {
+          "name": "Individual contributor",
+          "goals": [
+            "Stay on top of relevant work without drowning in notifications.",
+            "Find information and decisions quickly.",
+            "Contribute updates and decisions with minimal overhead."
+          ],
+          "frustrations": [
+            "Too many tools and channels to check.",
+            "Loss of context when switching tasks or devices."
+          ]
+        },
+        {
+          "name": "Team lead / manager",
+          "goals": [
+            "Keep the team aligned without micromanaging.",
+            "See the status of projects at a glance.",
+            "Resolve issues and unblock people quickly."
+          ],
+          "frustrations": [
+            "Needing to ask for updates repeatedly.",
+            "Hidden work and decisions in private channels or tools."
+          ]
+        },
+        {
+          "name": "Cross-functional collaborator",
+          "goals": [
+            "Coordinate work with other teams or companies.",
+            "Share updates and documents in one place.",
+            "Understand how decisions affect their part of the work."
+          ],
+          "frustrations": [
+            "Different tools and norms in each team.",
+            "Missing context when joining conversations late."
+          ]
+        }
+      ],
+      "usage_contexts": [
+        "Deep focus work at a desk.",
+        "Context-switching between meetings.",
+        "Mobile catch-up while commuting or away from desk.",
+        "Async collaboration across time zones."
+      ]
+    },
+
+    "user_research": {
+      "question": "How do we ground UX decisions in real user insight?",
+      "methods": [
+        "Generative interviews with different roles and company sizes.",
+        "Usability testing of key flows (remote and in-person).",
+        "Diary studies or longitudinal studies for long-running projects.",
+        "Analysis of support tickets and help center searches.",
+        "Instrumentation and behavioral analytics of core flows."
+      ],
+      "cadence": [
+        "Monthly discovery sessions on upcoming themes.",
+        "Continuous usability testing for in-flight designs.",
+        "Quarterly ‘state of UX’ review summarizing key findings."
+      ],
+      "research_repos": {
+        "location": "internal/research-repo",
+        "notes": "All insights tagged by persona, job-to-be-done, and product area to reuse learnings across teams."
+      }
+    },
+
+    "information_architecture": {
+      "question": "How is information organized so users can build a stable mental model?",
+      "core_structures": [
+        {
+          "name": "Spaces / Workspaces / Orgs",
+          "role": "Top-level boundaries for teams or companies.",
+          "notes": "Users should always know which space they are operating in and which people have access."
+        },
+        {
+          "name": "Channels / Topics / Rooms",
+          "role": "Primary containers for thematic or team-based conversations and work.",
+          "notes": "Each meaningful initiative, team or relationship gets its own long-lived channel."
+        },
+        {
+          "name": "Threads / Sub-conversations",
+          "role": "Focused discussions inside a larger stream.",
+          "notes": "Threads prevent timeline clutter while keeping context attached to the origin."
+        },
+        {
+          "name": "Artifacts (documents, lists, tasks, canvases)",
+          "role": "Persistent content linked to conversations.",
+          "notes": "Artifacts should be easily discoverable from related conversations."
+        }
+      ],
+      "navigation_model": {
+        "primary_questions": [
+          "Where do I go to pick up the most important things for me?",
+          "Where do I put something so others will find it later?",
+          "How do I know whether I’m seeing everything relevant to my role?"
+        ],
+        "answers": [
+          "Home or main view surfaces a prioritized mix of activity and focus.",
+          "Clear guidance on naming and structuring spaces/channels/artifacts.",
+          "Filters and personalization (muting, starring, sections) that keep IA flexible but coherent."
+        ]
+      }
+    },
+
+    "flows_and_scenarios": {
+      "question": "What are the critical user flows and how are they shaped?",
+      "critical_flows": [
+        {
+          "name": "Onboarding & first-week experience",
+          "goal": "Get new users to basic proficiency and value quickly.",
+          "key_steps": [
+            "Join workspace / space.",
+            "Guided tour and ‘do this now’ tasks.",
+            "First message sent / reaction added.",
+            "First channel joined and first search performed.",
+            "Optional: set notifications and preferences."
+          ],
+          "success_indicators": [
+            "User completes a small set of guided actions.",
+            "User understands differences between spaces/channels/DMs.",
+            "User returns on day 2 and day 7."
+          ]
+        },
+        {
+          "name": "Catch-up after time away",
+          "goal": "Let users quickly understand what changed while they were gone.",
+          "key_steps": [
+            "Open workspace and see prioritized summary of activity.",
+            "Review mentions, decisions, and key updates.",
+            "Jump into relevant threads for deeper context."
+          ],
+          "success_indicators": [
+            "User can feel ‘caught up’ in minutes, not hours.",
+            "Reduced need to ask others ‘what did I miss?’."
+          ]
+        },
+        {
+          "name": "Run a project in channels",
+          "goal": "Coordinate cross-functional work with clear accountability.",
+          "key_steps": [
+            "Create or join project channel.",
+            "Pin or link key artifacts (docs, lists, milestones).",
+            "Share updates, decisions and blockers in a consistent format.",
+            "Record decisions and outcome
+```

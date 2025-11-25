@@ -1,4 +1,756 @@
 ---
-title: 'Tech Strand'
-description: 'Engineering architecture, patterns, and standards'
+title: "Tech Strand"
+description: "Engineering architecture, patterns, and standards"
 ---
+
+---
+
+# Tech Strand – Engineering Architecture, Patterns, and Standards
+
+**Most products don’t die from bad ideas — they die because their technical DNA can’t survive growth.**
+
+The **Tech Strand** defines the **engineering backbone** of your company:
+
+- what you build on (stack),
+- how it’s wired (architecture),
+- how data lives and moves (storage + flows),
+- and how far it can go before it breaks (capacity).
+
+This strand turns vague tech choices into a **repeatable decision system** you can debug and evolve.
+
+---
+
+## 🧠 What the Tech Strand Owns
+
+The Tech Strand is responsible for:
+
+- **Runtime & architecture** – monolith vs services, languages, protocols.
+- **Client stack** – web, desktop, mobile, and how they share logic.
+- **Data & storage** – database engines, schemas, sharding model.
+- **Scalability & reliability** – how the system behaves at 10×, 100× usage.
+- **Integrations & platform** – APIs, events, and app surfaces.
+- **Standards & observability** – how engineers ship and see what’s happening.
+
+Think of it as the **engineering constitution**:\
+every feature, library, and integration must obey it.
+
+---
+
+## 🔗 Inputs from Other Strands
+
+The Tech Strand never works in isolation. It **implements contracts** defined by other strands:
+
+- **Product Strand →**
+  - Core jobs-to-be-done (e.g., _real-time messaging, search, file sharing_).
+  - Stress features (e.g., _enterprise orgs, cross-workspace channels_).
+  - Roadmap items that will heavily load infra (_workflows, bots, automations_).
+- **UX Strand →**
+  - Latency budgets (e.g., _message send feedback \< 200ms_).
+  - Real-time expectations (_presence, typing indicators, live updates_).
+  - Collaboration models (_DMs, channels, threads, reactions_).
+- **Brand Strand →**
+  - Reliability promises (_“always on” vs “good enough”_).
+  - Security/compliance bar (e.g., _enterprise-grade, data residency_).
+  - Platform narrative (_“open app ecosystem”, “secure by design”_).
+
+<info>
+  The Tech Strand translates **brand, product, and UX promises** into **concrete engineering choices**: languages, DBs, topologies, and SLAs.
+</info>
+
+---
+
+## Architecture Decision Axes
+
+Instead of “what framework is trendy?”, the Tech Strand decides across **six axes**.
+
+### 1. Runtime & Service Stack
+
+**Questions it answers**
+
+- What runtimes best match our workload (real-time, web-heavy, compute-heavy)?
+- Do we start **monolith-first** or **services-first**?
+- How do we avoid painting ourselves into a scaling corner?
+
+**Decision framework**
+
+- **Runtime choices**
+  - PHP/Hack, Rails, Django, Node, Go, Java, Elixir depending on:
+    - engineering talent,
+    - latency constraints,
+    - type-safety needs,
+    - maturity of ecosystem.
+- **Architecture patterns**
+  - **Monolith-first** with clear modules.
+  - **Modular monolith → microservices** when necessary.
+  - **Cell-based** architecture to limit blast radius.
+  - **BFF (Backend-for-Frontend)** for each client surface.
+
+#### Slack – Runtime & Services
+
+- **App Layer:**
+  - PHP → Hack (on HHVM) for the core web application.
+- **Real-time Messaging:**
+  - Java services for WebSocket handling, message routing, and fanout.
+- **Voice/Video:**
+  - Elixir services dedicated to calls and media.
+
+<success>
+  Slack kept a **highly productive PHP/Hack app layer**, then offloaded **real-time and specialized workloads** to dedicated Java/Elixir services.
+</success>
+
+---
+
+### 2. Client Stack & Delivery
+
+**Questions it answers**
+
+- Which clients do we support: web, desktop, mobile?
+- How do we reuse logic and design tokens across platforms?
+
+**Decision framework**
+
+- **Web**
+  - React (or equivalent) front-end.
+  - Shared design tokens + components (from UI Strand).
+- **Desktop**
+  - Electron or native shells wrapping the web app.
+- **Mobile**
+  - Native iOS (Swift) and Android (Kotlin) for performance-critical UX, or
+  - React Native/Flutter with clear tradeoffs.
+
+#### Slack – Clients
+
+- **Web:** React front-end with a Node-powered core engine.
+- **Desktop:** Electron apps wrapping the React app.
+- **Mobile:** Native iOS & Android clients consuming the same APIs.
+
+---
+
+### 3. Data Layer & Database Strategy
+
+**Questions it answers**
+
+- What is the **shape of our data**? (messages, channels, orgs, files…)
+- What are our **consistency vs latency** requirements?
+- How do we scale beyond a single DB?
+
+**Core data model**
+
+Typical entities for a Slack-like product:
+
+- `User`
+- `Workspace / Organization`
+- `Channel`
+- `Membership` (User↔Channel, User↔Workspace)
+- `Message` (with thread/reply chains)
+- `File / Attachment`
+- `Reaction / Emoji`
+- `App / Bot / Integration`
+
+**Design principles**
+
+- Normalize core relationships.
+- Denormalize for read-heavy paths (unreads, channel lists, summaries).
+- Use append-only logs for critical events (audit, recovery).
+
+#### Capacity tiers (DB and data)
+
+- **Tier 0 – Prototype**
+  - Single MySQL/Postgres instance.
+  - Read replica if needed.
+  - Suitable up to ~10–50k DAU with good indexing.
+- **Tier 1 – Growth**
+  - Horizontal partitioning / early sharding.
+  - Background jobs, heavier caching.
+- **Tier 2 – Slack-scale**
+  - Fully sharded DB layer with a routing and management system.
+
+#### Slack – Data & Storage
+
+- **Primary DB Engine:** MySQL.
+- **Sharding & Management:** Vitess, handling:
+  - sharding,
+  - query routing,
+  - connection pooling,
+  - online schema changes.
+- **Caching:** Memcached + mcrouter for routing and caching hot data.
+- **Async & Streams:**
+  - Kafka for event streaming,
+  - Redis for short-lived data and queues.
+- **Analytics:** Warehouse & batch stack (Presto/Spark/Airflow/Hadoop-style system).
+
+<warning>
+  At Slack scale, **Vitess + MySQL** is not “nice to have” — it’s the **storage backbone** handling **99%+ of query load** across thousands of shards.
+</warning>
+
+---
+
+### 4. Scalability, Reliability & Topology
+
+**Questions it answers**
+
+- How do we design for 10×, 100× growth?
+- How do we isolate failures so one bad shard doesn’t kill everything?
+- What happens when a massive customer reconnects all at once?
+
+**Scale patterns**
+
+- Horizontal sharding (often by tenant/workspace).
+- Gateway layer for WebSockets and API traffic.
+- Dedicated fanout services for broadcasting events.
+- Backpressure & rate-limiting at all external edges.
+
+**Reliability patterns**
+
+- Multi-AZ deployments with automatic failover.
+- **Cellular architecture**: split traffic into cells to reduce blast radius.
+- Graceful degradation: search might be slow, messaging stays alive.
+- Feature flags to decouple deploy from release.
+
+#### Slack – Topology & Scale
+
+- **Cloud:** Amazon EC2-based infra for dev and app environments.
+- **Real-time topology:**
+  - **Gateway servers** for WebSocket connections.
+  - **Channel servers** for routing and message fanout.
+  - **Presence servers** for user online/offline state.
+  - **Admin/control-plane services** for coordination.
+- **DB topology:**
+  - Vitess-managed MySQL shards with co-located proxy and shards.
+  - Millisecond-level query latencies across huge clusters.
+
+---
+
+### 5. Integration Surface & Platform
+
+**Questions it answers**
+
+- What’s the official way external systems talk to us?
+- How do we prevent “one-off hacks” for each integration?
+
+**Integration contracts**
+
+- REST/WebSocket APIs for primary usage.
+- Events API (webhooks) for external consumers.
+- Standardized app primitives:
+  - slash commands,
+  - bots,
+  - interactive components,
+  - workflow hooks.
+
+**Security & lifecycle**
+
+- OAuth2 with scoped permissions.
+- Rate limits & quotas.
+- API versioning and deprecation windows.
+- App review / validation flows.
+
+#### Slack – Platform
+
+- **APIs & SDKs:**
+  - Slack Web API & Events API.
+  - Bolt framework (Node, Python, Java) on top of the SDKs.
+- **Capabilities:**
+  - Slash commands, message actions, interactive UIs, workflows.
+- **Internal rule:**\
+  Internal systems should **consume the same platform abstractions** as external apps — no “secret” internal DB shortcuts.
+
+---
+
+### 6. Engineering Standards, Tooling & Observability
+
+**Questions it answers**
+
+- How do teams ship fast without breaking everything?
+- How do we debug issues across thousands of services and shards?
+
+**Standards**
+
+- **Code quality**
+  - Static typing where practical (Hack, Java, TS).
+  - Code review as default, not exception.
+  - Service templates with logging/metrics/tracing built in.
+- **CI/CD**
+  - Automated tests and builds per change.
+  - Canary & phased rollouts.
+  - Fast rollbacks and feature flags.
+- **Observability**
+  - Centralized structured logging.
+  - Metrics on latency, errors, saturation.
+  - Distributed tracing across APIs and async jobs.
+- **Dev environments**
+  - Remote dev envs mirroring production topology.
+  - Per-developer or per-team sandboxes.
+
+#### Slack – Standards & Dev Envs
+
+- Remote development environments on EC2 running full Slack app replicas.
+- Migration from plain PHP to Hack to enforce static types and long-term maintainability.
+
+---
+
+## Capacity Planning Blueprint
+
+Use **capacity tiers** to keep your Tech Strand honest.
+
+### Tier 0 – Prototype
+
+- **Architecture:**
+  - Monolith.
+  - 1× DB (MySQL/Postgres) + optional read replica.
+  - Simple cache (Redis/Memcached).
+- **Suitable for:** up to ~10–50k DAU.
+
+### Tier 1 – Growth
+
+- **Architecture:**
+  - Modular monolith or early microservices.
+  - Dedicated real-time services if needed.
+  - Heavier caching, queues, scheduled jobs.
+- **Suitable for:** ~250k DAU.
+
+### Tier 2 – Slack-Scale
+
+- **Architecture:**
+  - Cell-based microservices.
+  - Fully sharded storage (Vitess-like).
+  - Dedicated real-time grid (gateways, fanout, presence).
+  - Rich platform layer (APIs, SDKs, events).
+- **Suitable for:** 10M+ DAU, billions of messages/day.
+
+<info>
+  The Tech Strand should **explicitly document** what tier you’re in,\
+  and what must change to reach the next tier.
+</info>
+
+---
+
+## 🧩 Third-Party & Integrations Catalog
+
+The Tech Strand also maintains a **catalog of external bets**:
+
+- **Messaging & Queues**
+  - Kafka, Redis Streams, SQS, etc.
+  - Chosen by throughput, ordering, and ops complexity.
+- **Search & Indexing**
+  - Solr/Elasticsearch/OpenSearch.
+  - Multi-tenant index design, latency vs freshness.
+- **Analytics & Warehousing**
+  - Presto, Spark, Airflow, Hadoop, Snowflake, BigQuery.
+  - Chosen by query model, retention, and cost.
+- **Monitoring & Observability**
+  - Prometheus+Grafana, Datadog, New Relic, OpenTelemetry.
+  - Chosen by tracing capabilities, service correlation, alerting quality.
+
+Each entry should contain:
+
+- what it’s used for,
+- why it was chosen,
+- how hard it is to migrate away from it.
+
+---
+
+## 🛠 How to Use This Strand in Practice
+
+1. **Write the constraints first**
+   - From Product, UX, Brand: latency, scale, security, platforms.
+2. **Pick a capacity tier**
+   - Prototype, Growth, or Slack-scale.
+   - Document “what breaks next” as you grow.
+3. **Fill out the six decision axes**
+   - Runtime & services
+   - Client stack
+   - Data & storage
+   - Scalability & topology
+   - Integrations & platform
+   - Standards & observability
+4. **Define Slack-style reference**
+   - For each axis, add at least one **real company profile** (Slack here) to anchor reality.
+5. **Revisit quarterly**
+   - Tech Strand is **living DNA**.
+   - Every major architectural evolution should be reflected here.
+
+---
+
+> **Quote to steal:**\
+> “Your product is what users see — but your Tech Strand decides whether it survives contact with reality.”
+
+```json
+{
+  "strand_id": "tech",
+  "name": "Tech Strand – Engineering architecture, patterns, and standards",
+  "purpose": {
+    "summary": "Define the technical backbone of the product so it can scale, stay reliable, and evolve without rewriting the whole system.",
+    "goals": [
+      "Choose a tech stack and architecture that matches product, UX, and business constraints.",
+      "Design data models and storage that will survive 10–100x growth.",
+      "Standardize patterns, libraries, and integrations to reduce chaos and tech-debt.",
+      "Bake in reliability, observability, and security from day one."
+    ]
+  },
+
+  "inputs_from_other_strands": {
+    "product_strand": [
+      "Core jobs-to-be-done",
+      "Key workflows (e.g., real-time messaging, search, file sharing)",
+      "Roadmap: features that stress scale (e.g., large enterprises, cross-org channels)"
+    ],
+    "ux_strand": [
+      "Latency budgets (e.g., <200ms message send feedback)",
+      "Offline / presence expectations",
+      "Collaboration models (DM, channels, threads, reactions)"
+    ],
+    "brand_strand": [
+      "Reliability expectations (\"always on\" vs \"good enough\")",
+      "Security / compliance promises (e.g., enterprise-grade, data residency)"
+    ]
+  },
+
+  "decision_axes": {
+    "1_runtime_and_service_stack": {
+      "questions": [
+        "What languages and runtimes best match our real-time + web-heavy workload?",
+        "Do we start monolith-first or services-from-day-one?",
+        "How do we avoid painting ourselves into a scale corner?"
+      ],
+      "options_framework": {
+        "runtime_choices": [
+          "PHP/Hack + HHVM or similar (fast to build, proven at scale for web apps)",
+          "Java / JVM (for high-throughput, strongly-typed core services)",
+          "Node.js (good for gateway / edge / API fan-out)",
+          "Elixir/Go (for real-time, long-lived connections, low-latency services)"
+        ],
+        "architecture_patterns": [
+          "Monolith-first with clear module boundaries",
+          "Modular monolith evolving into microservices",
+          "Cellular / cell-based architecture for blast-radius isolation",
+          "Strict BFF (Backend-for-Frontend) layer for clients"
+        ]
+      },
+      "slack_example": {
+        "primary_backends": {
+          "application_layer": [
+            "PHP/Hack running on HHVM for core web application logic"
+          ],
+          "real_time_services": [
+            "Core real-time messaging services written in Java (Channel, Gateway, Admin, Presence servers) handling WebSocket connections and event fanout"
+          ],
+          "voice_video": [
+            "Elixir used for voice and video calling services"
+          ]
+        },
+        "notes": [
+          "Slack evolved from a LAMP-style stack to Hacklang on HHVM for better performance and static typing while keeping PHP compatibility.",
+          "Dedicated Java services now power high-throughput real-time messaging for millions of concurrent users."
+        ]
+      }
+    },
+
+    "2_client_stack_and_delivery": {
+      "questions": [
+        "What clients do we support (web, desktop, mobile)?",
+        "How do we share logic and design tokens across clients?"
+      ],
+      "options_framework": {
+        "web": [
+          "React (+ Redux or modern equivalent) as the primary web UI framework",
+          "Design tokens + component library mapped from UI Strand"
+        ],
+        "desktop": [
+          "Electron wrapper around the web app for cross-platform desktop",
+          "Shared codebase with web to minimize divergence"
+        ],
+        "mobile": [
+          "Native iOS (Swift) and Android (Kotlin) for performance-critical UX",
+          "Shared API/BFF contracts with web/desktop"
+        ]
+      },
+      "slack_example": {
+        "web": "React front-end with a Node.js-based core engine and Redux-style state management.",
+        "desktop": "Electron-based desktop clients wrapping the React app.",
+        "mobile": "Native iOS (Objective-C/Swift) and Android apps consuming the same APIs."
+      }
+    },
+
+    "3_data_layer_and_database_strategy": {
+      "questions": [
+        "What is the shape of our data (messages, channels, files, orgs, users)?",
+        "What are our consistency vs latency requirements?",
+        "At what scale will a single database fall over?"
+      ],
+      "data_model_basics": {
+        "core_entities": [
+          "User",
+          "Workspace / Organization",
+          "Channel",
+          "Membership (User<->Channel, User<->Workspace)",
+          "Message (with thread / reply chains)",
+          "File / Attachment",
+          "Reaction / Emoji",
+          "App / Bot / Integration"
+        ],
+        "design_principles": [
+          "Normalize core relationships (users, channels, workspaces).",
+          "Denormalize for read-heavy paths (e.g., channel membership summaries, unread counters).",
+          "Add append-only logs for critical events (audit & recovery)."
+        ]
+      },
+      "storage_strategy_framework": {
+        "mvp_scale": {
+          "description": "Single-region, single primary DB",
+          "pattern": "Single MySQL/Postgres instance with read replicas",
+          "capacity_envelope": "Up to ~10–50k DAU with careful indexing and caching"
+        },
+        "growth_scale": {
+          "description": "Horizontal scaling via sharding",
+          "pattern": "Sharded MySQL (e.g., via Vitess) or equivalent, partitioned by workspace or user-id",
+          "capacity_envelope": "100k–10M+ DAU, billions of messages"
+        },
+        "slack_scale": {
+          "description": "Massively sharded MySQL cluster with query router layer",
+          "pattern": "Vitess-managed MySQL shards, connection pooling, query routing, and online migrations"
+        }
+      },
+      "slack_example": {
+        "primary_database": {
+          "engine": "MySQL",
+          "scaling_layer": "Vitess for sharding, topology management, connection pooling, and online schema changes",
+          "notes": [
+            "MySQL is the backbone of Slack’s data storage infrastructure, handling billions of queries per day across thousands of sharded hosts.",
+            "Vitess now serves ~99% of Slack’s query load and is the storage bet for the foreseeable future."
+          ]
+        },
+        "caching": {
+          "layer": "Memcached with mcrouter for distributed caching and routing",
+          "purpose": [
+            "Reduce read pressure on MySQL/Vitess.",
+            "Speed up hot paths such as channel lists, message histories, and presence data."
+          ]
+        },
+        "async_queues_and_streams": {
+          "technologies": [
+            "Kafka for event streaming and async processing",
+            "Redis for task queues and short-lived data"
+          ],
+          "usage_examples": [
+            "Fanout of events to connected clients",
+            "Background jobs like indexing, notifications, and analytics ingestion"
+          ]
+        },
+        "analytics_and_warehouse": {
+          "stack": [
+            "Presto, Spark, Airflow, Hadoop, and Kafka powering data warehousing and analytics workloads"
+          ],
+          "purpose": [
+            "Usage analytics, billing, and long-term product insights."
+          ]
+        }
+      }
+    },
+
+    "4_scalability_reliability_and_topology": {
+      "questions": [
+        "How do we design for N× growth in users, channels, and messages?",
+        "What’s our fault isolation strategy?",
+        "How do we handle the thundering herd when huge orgs reconnect?"
+      ],
+      "patterns_framework": {
+        "scale_patterns": [
+          "Horizontal sharding by workspace or tenant",
+          "Edge gateways for WebSockets and API traffic",
+          "Fanout services for real-time event distribution",
+          "Backpressure and rate-limiting on all external edges"
+        ],
+        "reliability_patterns": [
+          "Multi-AZ deployment (at minimum) with automated failover",
+          "Cellular architecture: partition traffic into “cells” to limit blast radius",
+          "Graceful degradation (e.g., search might be slow but messaging stays up)",
+          "Feature flags to decouple deploy from release"
+        ],
+        "infra_basics": [
+          "Run on cloud infra like AWS (EC2, load balancers, managed network, storage).",
+          "Per-env isolation: dev, staging, prod with similar topology."
+        ]
+      },
+      "slack_example": {
+        "cloud": "Slack runs its dev and app environments on Amazon EC2-based infrastructure.",
+        "real_time_topology": {
+          "services": [
+            "Gateway Servers manage WebSocket connections from clients.",
+            "Channel Servers handle routing and fanout of messages per channel.",
+            "Presence Servers maintain online/offline state.",
+            "Admin Servers coordinate control-plane responsibilities."
+          ],
+          "characteristics": [
+            "Designed to handle billions of daily messages and millions of concurrent connections.",
+            "Optimized to solve thundering herd problems when large organizations reconnect at once."
+          ]
+        },
+        "db_topology": {
+          "design": "Vitess-managed MySQL shards deployed as large clusters.",
+          "latency": "Average query latency around a few milliseconds thanks to co-located proxy and shards."
+        }
+      }
+    },
+
+    "5_integration_surface_and_platform": {
+      "questions": [
+        "What’s the official way external systems talk to us?",
+        "How do we prevent every integration from becoming a one-off hack?"
+      ],
+      "patterns_framework": {
+        "integration_contracts": [
+          "REST + WebSocket APIs for core product usage.",
+          "Events API (webhooks) for external consumers.",
+          "Slash commands, bots, and app framework as standardized integration primitives."
+        ],
+        "auth_and_security": [
+          "OAuth 2.0 for app authentication.",
+          "Fine-grained scopes for permissions.",
+          "Rate limits and quotas to protect core systems."
+        ],
+        "versioning_and_lifecycle": [
+          "API versioning strategy (v1, v2… with deprecation windows).",
+          "App review / validation workflow."
+        ]
+      },
+      "slack_example": {
+        "public_platform": {
+          "sdks_and_frameworks": [
+            "Bolt framework (Python, Node.js, Java) built on top of Slack SDKs.",
+            "Slack Web API and Events API as primary integration points."
+          ],
+          "capabilities": [
+            "Slash commands, interactive components, message actions.",
+            "Workflow integrations, file uploads, and more."
+          ]
+        },
+        "internal_integration_policy": {
+          "principles": [
+            "All internal integrations should go through the same platform abstractions used by external apps.",
+            "No direct DB access for external systems; everything via APIs/events."
+          ]
+        }
+      }
+    },
+
+    "6_engineering_standards_tooling_and_observability": {
+      "questions": [
+        "How do teams ship fast without breaking everything?",
+        "How do we see and debug issues across thousands of services and shards?"
+      ],
+      "standards_framework": {
+        "code_quality": [
+          "Static typing where possible (Hack, Java, TypeScript).",
+          "Mandatory code review and automated testing pipelines.",
+          "Service templates with default logging/metrics/tracing baked in."
+        ],
+        "ci_cd": [
+          "Automated test + build pipelines for every change.",
+          "Canary and phased rollouts to limit blast radius.",
+          "Rollbacks and feature flags as safety net."
+        ],
+        "observability": [
+          "Centralized logging (structured logs).",
+          "Metrics (latency, error rates, saturation) per service and per cell.",
+          "Distributed tracing across APIs and async flows."
+        ],
+        "dev_environments": [
+          "Remote dev environments running app replicas on EC2 (or equivalent), mirroring production topology closely.",
+          "Per-developer or per-team sandboxes for experimentation."
+        ]
+      },
+      "slack_example": {
+        "dev_envs": [
+          "Slack provides remote development environments hosted on Amazon EC2, each running a full copy of the Slack application and its dependent services for engineers to test changes in realistic conditions."
+        ],
+        "type_safety_and_quality": [
+          "Migration from plain PHP to Hack introduced static typing, helping detect errors early and support long-term maintainability."
+        ]
+      }
+    }
+  },
+
+  "capacity_planning": {
+    "tiers": [
+      {
+        "name": "Tier 0 – Prototype",
+        "max_users": 5000,
+        "architecture_profile": "Single-region monolith, one primary DB, minimal sharding, basic caching.",
+        "recommended_stack": {
+          "backend": "Rails/Laravel/Django/Node monolith or Hack/PHP monolith.",
+          "db": "Single MySQL/Postgres instance + read replicas.",
+          "cache": "Single Redis/Memcached node.",
+          "messaging": "Simple WebSocket server or long polling."
+        }
+      },
+      {
+        "name": "Tier 1 – Growth",
+        "max_users": 250000,
+        "architecture_profile": "Modular monolith or early microservices, dedicated real-time layer, heavy caching, background jobs.",
+        "recommended_stack": {
+          "backend": "Hack/PHP or Java + Node gateways.",
+          "db": "Horizontally partitioned MySQL/Postgres (schema-based or early Vitess).",
+          "cache": "Memcached/Redis clusters with routing (e.g., mcrouter).",
+          "queues": "Kafka/RabbitMQ/Redis streams for async tasks."
+        }
+      },
+      {
+        "name": "Tier 2 – Slack-scale",
+        "max_users": "10M+ DAU, billions of messages/day",
+        "architecture_profile": "Cellular architecture, sharded MySQL via Vitess, dedicated Java real-time services, robust platform layer.",
+        "recommended_stack": {
+          "backend": [
+            "Hack/PHP app layer",
+            "Java real-time services",
+            "Elixir for voice/video"
+          ],
+          "db": "Vitess-managed MySQL shards for all critical data.",
+          "cache": "Large Memcached + mcrouter clusters.",
+          "streaming": "Kafka for events; Redis for fast queues.",
+          "infra": "AWS or equivalent with EC2-style instances, autoscaling groups, multi-AZ deployments."
+        }
+      }
+    ]
+  },
+
+  "third_party_and_integrations_catalog": {
+    "categories": [
+      {
+        "name": "Messaging and Queues",
+        "examples": ["Kafka", "Redis Streams", "SQS"],
+        "selection_criteria": [
+          "Throughput requirements",
+          "Ordering guarantees",
+          "Operational complexity"
+        ]
+      },
+      {
+        "name": "Search and Indexing",
+        "examples": ["SolrCloud", "Elasticsearch", "OpenSearch"],
+        "selection_criteria": [
+          "Multi-tenant indexing strategy",
+          "Latency vs freshness tradeoffs"
+        ]
+      },
+      {
+        "name": "Analytics and Warehousing",
+        "examples": ["Presto", "Spark", "Airflow", "Hadoop", "Snowflake/BigQuery"],
+        "selection_criteria": [
+          "Query patterns (ad-hoc vs dashboards)",
+          "Data retention requirements",
+          "Cost vs flexibility"
+        ]
+      },
+      {
+        "name": "Monitoring and Observability",
+        "examples": ["Prometheus+Grafana", "Datadog", "New Relic", "OpenTelemetry"],
+        "selection_criteria": [
+          "Support for distributed tracing",
+          "Multi-service correlation"
+        ]
+      }
+    ]
+  }
+}
+```

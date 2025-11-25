@@ -1,4 +1,877 @@
 ---
-title: 'Data Strand'
-description: 'How data flows, is stored, and is used'
+title: "Data Strand"
+description: "How data flows, is stored, and is used"
 ---
+
+---
+
+# Data Strand – The Operating System of Your Company
+
+**Your product doesn’t run on features — it runs on data.**
+
+The **Data Strand** defines how your company:
+
+- structures information,
+- moves it across systems,
+- secures and governs it,
+- and turns it into **insights, AI, and automation**.
+
+If the Tech Strand is the **nervous system**, the Data Strand is the **memory + intelligence layer** — it connects **every other strand** into one coherent operating system.
+
+---
+
+## 🧪 Workshop Meta – How to Design the Data Strand
+
+**Framework version:** `data-strand-v1.0`
+
+**Use this strand to map:**
+
+- Data Purpose
+- Data Domains & Entities
+- Pipelines & Flows
+- Storage & Architecture
+- Access & Permissions
+- Governance & Compliance
+- Analytics & Insights
+- AI & Automation
+- Quality & Reliability
+- Lifecycle & Retention
+- Risks & Guardrails
+
+**Who should be in the room**
+
+- Data engineering
+- Backend / platform engineering
+- Product & UX
+- Marketing / growth
+- AI / ML
+
+**Facilitation notes**
+
+- Start by mapping **real events, logs, objects, and usage telemetry**, not abstractions.
+- Treat this as the **Data OS** — the backbone that **every system and team** relies on.
+
+---
+
+## 🎯 Purpose & Role – Why This Company Collects Data
+
+**Guiding question**
+
+> _Why does this company collect and use data?_
+
+**Core answer**
+
+Data ensures the product stays **reliable, personalized, and secure**, enabling:
+
+- fast search,
+- AI-powered assistance,
+- performance optimization,
+- customer insight,
+- and compliance.
+
+Data is the **connective tissue** across strands:
+
+- **Product** – feature usage, adoption, outcomes
+- **UX** – flows, drop-offs, friction events
+- **UI** – interaction events, clickstreams
+- **Marketing** – attribution, cohorts, campaigns
+- **AI** – summarization, retrieval, recommendations
+
+**Primary objectives**
+
+- Power **real-time collaboration, search, and AI summarization**.
+- Maintain **workspace integrity, access control, and security**.
+- Support **product-led growth, customer insights, and adoption metrics**.
+- Fuel **automation** through telemetry and workflow triggers.
+
+---
+
+## 🗺 Data Domains – The Map of What Exists
+
+**Guiding question**
+
+> _What are the core domains of data in the system?_
+
+### 1. Users & Identities
+
+- **Entities**
+  - User profiles
+  - Credentials & auth tokens
+  - Permissions & roles
+  - Preferences & notification settings
+- **Notes**
+  - Tightly connected with **authentication, SSO, org admin, and compliance controls**.
+
+---
+
+### 2. Workspaces / Organizations
+
+- **Entities**
+  - Workspace metadata
+  - Billing & plan
+  - Workspace settings
+  - Security & compliance policies
+- **Notes**
+  - Drives **governance, access, and cross-org collaboration**.
+
+---
+
+### 3. Channels & Conversations
+
+- **Entities**
+  - Channel metadata
+  - Membership lists
+  - Messages
+  - Threads
+  - Reactions (emoji data events)
+  - Pinned items
+- **Notes**
+  - **Primary collaboration dataset** powering:
+    - search,
+    - grooming & curation,
+    - AI summarization,
+    - compliance exports.
+
+---
+
+### 4. Artifacts
+
+- **Entities**
+  - Files
+  - Canvases
+  - Lists
+  - Task items
+  - Attached metadata (permissions, versions, references)
+- **Notes**
+  - Interlinked with messages; stored in **object storage** and **indexed for search**.
+
+---
+
+### 5. Activity & Telemetry
+
+- **Entities**
+  - UI interaction events
+  - UX flow events
+  - Feature adoption events
+  - Performance logs
+  - Search queries
+- **Notes**
+  - Feeds **product analytics, PLG motions, UX quality metrics, and AI ranking**.
+
+---
+
+### 6. External Integrations
+
+- **Entities**
+  - App tokens
+  - API calls
+  - Workflow steps
+  - External channel partners
+  - Integration logs
+- **Notes**
+  - Supports **platform health, audit logs, and the extensibility ecosystem**.
+
+<info>
+  If it doesn’t fit into a domain, it doesn’t belong in your system.\
+  Domains are how you **keep data from becoming an unstructured swamp**.
+</info>
+
+---
+
+## 🔄 Data Flows & Pipelines – How Data Moves
+
+**Guiding question**
+
+> _How does data move from creation to consumption?_
+
+### Pipeline 1 – Real-time Event Pipeline
+
+**Stages**
+
+1. Client events generated (UI)
+2. Ingestion gateway
+3. Streaming queue (Kafka / PubSub)
+4. Event processors
+5. Storage in time-series DB or warehouse
+
+**Use cases**
+
+- Live updates
+- Presence indicators
+- Message posting & thread updates
+- Alerting & notifications
+- Analytics & dashboards
+
+---
+
+### Pipeline 2 – Search Indexing Pipeline
+
+**Stages**
+
+1. Message stored
+2. Tokenization & normalization
+3. Embedding generation (for AI search)
+4. Indexing in search clusters
+5. Refresh & ranking adjustments
+
+**Use cases**
+
+- Full-text search
+- Semantic search
+- AI conversation summaries
+- Knowledge retrieval
+
+---
+
+### Pipeline 3 – AI Summarization Pipeline
+
+**Stages**
+
+1. Conversation or artifact retrieved
+2. Preprocessing & cleaning
+3. LLM summary generation
+4. Metadata tagging
+5. Caching & revalidation
+
+**Use cases**
+
+- Channel summaries
+- Thread catch-up
+- Daily digests
+- Decision extraction
+
+---
+
+### Pipeline 4 – ETL / Warehouse Sync
+
+**Stages**
+
+1. Batch or micro-batch extract
+2. Transform into analytics schemas
+3. Load into warehouse
+4. Expose through BI tools
+
+**Use cases**
+
+- Retention analysis
+- Funnel metrics
+- Enterprise reporting
+- Billing & usage scoring
+
+<warning>
+  If you can’t sketch your pipelines as **end-to-end flows**,\
+  you can’t reason about **latency, failure modes, or AI behaviour**.
+</warning>
+
+---
+
+## 🧱 Storage & Architecture – Where Data Lives
+
+**Datastores and their jobs**
+
+- **Relational DB**
+  - **Use:** Users, orgs, channels, permissions, metadata
+  - **Notes:** Strong consistency required for **identity and access**.
+- **Object Storage**
+  - **Use:** Files, media, canvas versions
+  - **Notes:** Versioning, scanning, **encryption at rest**.
+- **Search Clusters**
+  - **Use:** Messages, threads, artifacts
+  - **Notes:** Combines **keyword indexing** and **vector embeddings**.
+- **Time-series DB**
+  - **Use:** Metrics, telemetry, performance logs
+  - **Notes:** Used by **SRE, reliability, and product analytics**.
+- **Data Warehouse**
+  - **Use:** Analytics, BI, dashboards, segmentation
+  - **Notes:** **Source of truth** for user and workspace metrics.
+- **Cache / KV Store**
+  - **Use:** Presence, recent items, hot keys, ephemeral data
+  - **Notes:** Supports **real-time responsiveness**.
+
+---
+
+## 🔐 Access & Permissions – Who Sees What
+
+**Guiding question**
+
+> _Who has access to what data, and how is it enforced?_
+
+**Principles**
+
+- **Least privilege** by default.
+- Role-based permissions for **org admins, owners, and users**.
+- Clear separation between **internal staff, customers, and external partners**.
+- **All access points audited.**
+
+**Permission layers**
+
+- Workspace-level permissions
+- Channel membership
+- Thread visibility
+- Artifact-level permissions
+- Admin override rules with **audit documentation**
+
+---
+
+## 🛡 Governance & Compliance – How Data Stays Legit
+
+**Guiding question**
+
+> _How do we ensure data is secure, compliant, and high-integrity?_
+
+**Policies**
+
+- Encryption **in transit and at rest**.
+- Data residency options for **enterprise customers**.
+- Retention settings configurable **per workspace**.
+- Export tools for **compliance and eDiscovery**.
+- Audit logs for all **critical actions**.
+
+**Compliance frameworks**
+
+- SOC 2
+- ISO 27001
+- GDPR
+- HIPAA (if applicable)
+- FedRAMP / GovCloud (for government workspaces)
+
+<info>
+  The Data Strand should explicitly document which frameworks you **target**,\
+  which you’re **certified for**, and what that means for **product behaviour**.
+</info>
+
+---
+
+## 📊 Analytics & Insights – What You Learn from Data
+
+**Guiding question**
+
+> _What metrics and insights are generated from data?_
+
+### Product Metrics
+
+- Daily Active Users
+- Weekly Active Channels
+- Messages sent per user
+- Search usage
+- Workflow Builder usage
+- AI summary usage
+
+### Experience Metrics
+
+- Task completion time
+- Flow drop-off
+- Latency and error rates
+- UX friction points from telemetry
+
+### Business Metrics
+
+- Retention and expansion
+- Activation milestones
+- Seat growth
+- External collaboration adoption
+
+### Marketing Metrics
+
+- Attribution data
+- Lifecycle segmentation
+- Campaign performance
+- Lead → conversion pipeline
+
+---
+
+## 🤖 AI & Automation – Turning Data into Leverage
+
+**Guiding question**
+
+> _How does data feed AI and automation systems?_
+
+### AI Uses
+
+- Summaries of **channels, threads, and canvases**
+- Semantic search embeddings
+- Decision extraction
+- User preference prediction
+- Workflow suggestions
+
+### Automation Uses
+
+- Triggers based on **message patterns**
+- Workflow Builder events
+- Bot interactions
+- Cross-platform signals
+
+### Responsible AI Policies
+
+- AI never accesses content the user **can’t already access**.
+- Summaries are **cached and revalidated** to avoid overprocessing.
+- Models tested for **hallucination reduction**.
+- Users get **consent and visibility** into AI operations.
+
+---
+
+## 📈 Quality & Reliability – Keeping Trust in the Data
+
+**Quality dimensions**
+
+- Latency (message post, render, search)
+- Event delivery reliability
+- Data correctness
+- Search accuracy
+- AI summary precision
+- Zero data loss under scale
+
+**Monitoring**
+
+- Real-time dashboards for **ingestion and pipeline health**
+- Anomaly detection on **message volume**
+- Alerting rules for **indexing delays**
+
+---
+
+## 🕰 Lifecycle & Retention – How Data Ages
+
+**Phases**
+
+1. **Creation**
+   - Messages, events, files, artifacts, telemetry
+2. **Active use**
+   - Displayed in UI, threads, search, canvases
+3. **Archival**
+   - Older content in **cheaper storage tiers**
+4. **Deletion**
+   - Retention-based or admin-initiated removals
+
+**Principles**
+
+- Users and admins **control visibility and retention**.
+- Search respects **retention windows**.
+- Deletion propagates to **all indexes and caches**.
+
+---
+
+## 🚧 Risks & Guardrails – How It Fails, How You Prevent It
+
+**Risks**
+
+- Data overload causing **slow search and degraded performance**.
+- Inaccurate or outdated search indexes creating **trust issues**.
+- AI summarizing **sensitive content incorrectly**.
+- Broken workflows due to **missing telemetry**.
+
+**Guardrails**
+
+- **Strict pipeline ownership** per data domain.
+- Automated **reindexing** for stale content.
+- AI summaries **labeled** and easily toggled off.
+- Rate limiting on ingestion systems under **overload**.
+
+---
+
+## 🧙‍♂️ Data Archetype – Who the System “Is”
+
+**Guiding question**
+
+> _If the data system were a role in the organization, who would it be?_
+
+- **Primary archetype:** **Archivist**
+- **Secondary archetype:** **Strategist**
+
+**Rationale**
+
+> The data system remembers everything, organizes it intelligently,\
+> and provides the **insight and foresight** needed to make strategic decisions at scale.
+
+---
+
+## 📌 How to Use This Data Strand in Practice
+
+1. **Run a cross-functional workshop**
+   - Use this page as the **agenda**.
+   - Fill in **your company’s answers** under each section.
+2. **Map your real events and entities**
+   - Start from **what actually exists**: logs, messages, files, telemetry.
+   - Place everything into **domains and pipelines**.
+3. **Decide storage and access patterns**
+   - For each domain, decide:
+     - where it lives (DB / warehouse / object store),
+     - who can see it,
+     - how long it lives.
+4. **Wire analytics, AI, and automation explicitly**
+   - For each metric or AI use case, map:
+     - **source data → pipeline → model → UI surface**.
+5. **Define risks & guardrails up front**
+   - Decide how you detect failures,
+   - and what should gracefully degrade when they happen.
+
+---
+
+> **Screenshotable line:**\
+> **“Your Data Strand isn’t a dashboard — it’s the operating system that decides what your company can know, automate, and safely promise.”**
+
+```json
+{
+  "data_strand": {
+    "workshop_meta": {
+      "framework_version": "data-strand-v1.0",
+      "source_templates": [
+        "Data Purpose",
+        "Data Domains & Entities",
+        "Pipelines & Flows",
+        "Storage & Architecture",
+        "Access & Permissions",
+        "Governance & Compliance",
+        "Analytics & Insights",
+        "AI & Automation",
+        "Quality & Reliability",
+        "Lifecycle & Retention",
+        "Risks & Guardrails"
+      ],
+      "facilitation_notes": [
+        "Run with data engineering, backend, product, marketing, and AI teams.",
+        "Start by mapping real events, logs, objects, and usage telemetry.",
+        "Treat this JSON as the Data OS — the backbone that every system and team relies on."
+      ]
+    },
+
+    "purpose_and_role": {
+      "question": "Why does this company collect and use data?",
+      "answer": "Data ensures the product remains reliable, personalized and secure, enabling fast search, AI-powered assistance, performance optimization, customer insights and compliance. Data connects every strand — product behavior, UX flows, UI events, marketing attribution, and AI summarization — into one coherent operating system.",
+      "objectives": [
+        "Power real-time collaboration, search and AI summarization.",
+        "Maintain workspace integrity, access control and security.",
+        "Support product-led growth, customer insights and adoption metrics.",
+        "Fuel automation through telemetry and workflow triggers."
+      ]
+    },
+
+    "data_domains": {
+      "question": "What are the core domains of data in the system?",
+      "domains": [
+        {
+          "name": "Users & Identities",
+          "entities": [
+            "User profiles",
+            "Credentials & auth tokens",
+            "Permissions & roles",
+            "Preferences & notification settings"
+          ],
+          "notes": "Tightly connected with authentication, SSO, org admin and compliance controls."
+        },
+        {
+          "name": "Workspaces / Organizations",
+          "entities": [
+            "Workspace metadata",
+            "Billing & plan",
+            "Workspace settings",
+            "Security & compliance policies"
+          ],
+          "notes": "Drives governance, access and cross-org collaboration."
+        },
+        {
+          "name": "Channels & Conversations",
+          "entities": [
+            "Channel metadata",
+            "Membership lists",
+            "Messages",
+            "Threads",
+            "Reactions (emoji data events)",
+            "Pinned items"
+          ],
+          "notes": "Primary collaboration dataset that powers search, grooming, AI summarization and compliance exports."
+        },
+        {
+          "name": "Artifacts",
+          "entities": [
+            "Files",
+            "Canvases",
+            "Lists",
+            "Task items",
+            "Attached metadata (permissions, versions, references)"
+          ],
+          "notes": "Interlinked with messages; stored in object storage and indexed for search."
+        },
+        {
+          "name": "Activity & Telemetry",
+          "entities": [
+            "UI interaction events",
+            "UX flow events",
+            "Feature adoption events",
+            "Performance logs",
+            "Search queries"
+          ],
+          "notes": "Feeds product analytics, PLG motions, UX quality metrics and AI ranking."
+        },
+        {
+          "name": "External Integrations",
+          "entities": [
+            "App tokens",
+            "API calls",
+            "Workflow steps",
+            "External channel partners",
+            "Integration logs"
+          ],
+          "notes": "Supports platform health, audit logs, and extensibility ecosystem."
+        }
+      ]
+    },
+
+    "data_flows_and_pipelines": {
+      "question": "How does data move through the system from creation to consumption?",
+      "pipelines": [
+        {
+          "name": "Real-time Event Pipeline",
+          "stages": [
+            "Client events generated (UI)",
+            "Ingestion gateway",
+            "Streaming queue (Kafka/PubSub)",
+            "Event processors",
+            "Storage in time-series DB or warehouse"
+          ],
+          "use_cases": [
+            "Live updates",
+            "Presence indicators",
+            "Message posting & thread updates",
+            "Alerting & notifications",
+            "Analytics & dashboards"
+          ]
+        },
+        {
+          "name": "Search Indexing Pipeline",
+          "stages": [
+            "Message stored",
+            "Tokenization & normalization",
+            "Embedding generation (for AI search)",
+            "Indexing in search clusters",
+            "Refresh & ranking adjustments"
+          ],
+          "use_cases": [
+            "Full-text search",
+            "Semantic search",
+            "AI conversation summaries",
+            "Knowledge retrieval"
+          ]
+        },
+        {
+          "name": "AI Summarization Pipeline",
+          "stages": [
+            "Conversation or artifact retrieved",
+            "Preprocessing & cleaning",
+            "LLM summary generation",
+            "Metadata tagging",
+            "Caching & revalidation"
+          ],
+          "use_cases": [
+            "Channel summaries",
+            "Thread catch-up",
+            "Daily digests",
+            "Decision extraction"
+          ]
+        },
+        {
+          "name": "ETL / Warehouse Sync",
+          "stages": [
+            "Batch or micro-batch extract",
+            "Transform into analytics schemas",
+            "Load into warehouse",
+            "Expose through BI tools"
+          ],
+          "use_cases": [
+            "Retention analysis",
+            "Funnel metrics",
+            "Enterprise reporting",
+            "Billing & usage scoring"
+          ]
+        }
+      ]
+    },
+
+    "storage_and_architecture": {
+      "datastores": [
+        {
+          "type": "Relational DB",
+          "use": "Users, orgs, channels, permissions, metadata",
+          "notes": "Strong consistency required for identity and access."
+        },
+        {
+          "type": "Object Storage",
+          "use": "Files, media, canvas versions",
+          "notes": "Versioning, scanning, encryption at rest."
+        },
+        {
+          "type": "Search Clusters",
+          "use": "Messages, threads, artifacts",
+          "notes": "Combines keyword indexing and vector embeddings."
+        },
+        {
+          "type": "Time-series DB",
+          "use": "Metrics, telemetry, performance logs",
+          "notes": "Used by SRE, reliability and product analytics teams."
+        },
+        {
+          "type": "Data Warehouse",
+          "use": "Analytics, BI, dashboards, segmentation",
+          "notes": "Source of truth for user and workspace metrics."
+        },
+        {
+          "type": "Cache / KV Store",
+          "use": "Presence, recent items, hot keys, ephemeral data",
+          "notes": "Supports real-time responsiveness."
+        }
+      ]
+    },
+
+    "access_and_permissions": {
+      "question": "Who has access to what data, and how is it enforced?",
+      "principles": [
+        "Least privilege by default.",
+        "Role-based permissions for org admins, owners and users.",
+        "Data-tier separation between internal staff, customers and external partners.",
+        "All access points audited."
+      ],
+      "permission_layers": [
+        "Workspace-level permissions",
+        "Channel membership",
+        "Thread visibility",
+        "Artifact-level permissions",
+        "Admin override rules with audit documentation"
+      ]
+    },
+
+    "data_governance_and_compliance": {
+      "question": "How do we ensure data is secure, compliant and high-integrity?",
+      "policies": [
+        "Encryption in transit and at rest.",
+        "Data residency options for enterprise customers.",
+        "Retention settings configurable per workspace.",
+        "Export tools for compliance and eDiscovery.",
+        "Audit logs for all critical actions."
+      ],
+      "compliance_frameworks": [
+        "SOC 2",
+        "ISO 27001",
+        "GDPR",
+        "HIPAA (if applicable)",
+        "FedRAMP / GovCloud (for government workspaces)"
+      ]
+    },
+
+    "analytics_and_insights": {
+      "question": "What metrics and insights are generated from data?",
+      "product_metrics": [
+        "Daily Active Users",
+        "Weekly Active Channels",
+        "Messages sent per user",
+        "Search usage",
+        "Workflow Builder usage",
+        "AI summary usage"
+      ],
+      "experience_metrics": [
+        "Task completion time",
+        "Flow drop-off",
+        "Latency and error rates",
+        "UX friction points from telemetry"
+      ],
+      "business_metrics": [
+        "Retention and expansion",
+        "Activation milestones",
+        "Seat growth",
+        "External collaboration adoption"
+      ],
+      "marketing_metrics": [
+        "Attribution data",
+        "Lifecycle segmentation",
+        "Campaign performance",
+        "Lead → conversion pipeline"
+      ]
+    },
+
+    "ai_and_automation": {
+      "question": "How does data feed AI and automation systems?",
+      "ai_uses": [
+        "Summaries of channels, threads and canvases",
+        "Semantic search embeddings",
+        "Decision extraction",
+        "User preference prediction",
+        "Workflow suggestions"
+      ],
+      "automation_uses": [
+        "Triggers based on message patterns",
+        "Workflow Builder events",
+        "Bot interactions",
+        "Cross-platform signals"
+      ],
+      "responsible_ai_policies": [
+        "AI never accesses content the user can't access.",
+        "Summaries are cached and revalidated to reduce overprocessing.",
+        "Models tested for hallucination reduction.",
+        "User consent and visibility into AI operations."
+      ]
+    },
+
+    "quality_and_reliability": {
+      "dimensions": [
+        "Latency (message post, render, search)",
+        "Event delivery reliability",
+        "Data correctness",
+        "Search accuracy",
+        "AI summary precision",
+        "Zero data loss under scale"
+      ],
+      "monitoring": [
+        "Real-time dashboards for ingestion and pipeline health",
+        "Anomaly detection on message volume",
+        "Alerting rules for indexing delays"
+      ]
+    },
+
+    "data_lifecycle_and_retention": {
+      "phases": [
+        {
+          "phase": "Creation",
+          "includes": "Messages, events, files, artifacts, telemetry"
+        },
+        {
+          "phase": "Active use",
+          "includes": "Displayed in UI, threads, search, canvases"
+        },
+        {
+          "phase": "Archival",
+          "includes": "Older content stored in less costly storage tiers"
+        },
+        {
+          "phase": "Deletion",
+          "includes": "Retention-based or admin-initiated removals"
+        }
+      ],
+      "principles": [
+        "Users and admins control visibility and retention.",
+        "Search respects retention windows.",
+        "Deletion propagates to all indexes and caches."
+      ]
+    },
+
+    "risks_and_guardrails": {
+      "risks": [
+        "Data overload causing slow search and degraded performance.",
+        "Inaccurate or outdated search indexes creating trust issues.",
+        "AI summarizing sensitive content incorrectly.",
+        "Broken workflows due to missing telemetry."
+      ],
+      "guardrails": [
+        "Strict pipeline ownership per data domain.",
+        "Automated reindexing for stale content.",
+        "AI summaries labeled and easily toggled off.",
+        "Rate limiting on ingestion systems under overload."
+      ]
+    },
+
+    "data_archetype": {
+      "question": "If the data system were a role in the organization, who would it be?",
+      "primary_archetype": "Archivist",
+      "secondary_archetype": "Strategist",
+      "rationale": "The data system remembers everything, organizes it intelligently, and provides the insight and foresight needed to make strategic decisions at scale."
+    }
+  }
+}
+```

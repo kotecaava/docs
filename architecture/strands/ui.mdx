@@ -1,4 +1,606 @@
 ---
-title: 'UI Strand'
-description: 'Visual patterns, components, and design systems'
+title: "UI Strand"
+description: "Visual patterns, components, and design systems"
 ---
+
+# 🧱 UI Strand – Slack
+
+_Visual patterns · Components · Design systems_
+
+The **UI Strand** describes how the product looks and behaves on screen:\
+layouts, patterns, components, and the design system that keeps everything consistent.
+
+Here we use **Slack** as a concrete, fact-based example, based on its public brand guidelines, product UI, and Block Kit documentation.
+
+---
+
+## 🧬 1. UI System Overview
+
+<info>
+  Slack effectively runs on two tightly connected systems:
+
+  1. A brand system (logo, colors, typography, illustration)
+  2. A product UI system (app layout, patterns, Block Kit components)
+</info>
+
+### Brand vs. Product UI
+
+- Brand palette: expressive, vibrant colors (aubergine, blue, green, yellow, red, black, white) used for marketing and identity.
+- Product UI: more muted, accessible, low-fatigue colors that still echo the brand but prioritize usability and legibility over visual noise.
+
+### Block Kit – App UI Framework
+
+For apps and extensions **inside Slack**, the UI framework is:
+
+- **Block Kit** – a stackable UI framework for messages, Home tabs, and modals.
+- Built from:
+  - **Blocks** – structural chunks (sections, images, actions, context, etc.).
+  - **Block elements** – interactive components (buttons, selects, date pickers, etc.).
+  - **Composition objects** – smaller building blocks like text objects and options.
+- Used for:
+  - App messages
+  - App Home surfaces
+  - Modals / forms
+  - Rich notifications and interactive flows
+
+---
+
+## 🧩 2. Structural Building Blocks
+
+### Core Layout Surfaces in Slack
+
+Slack's main product UI is organized around a small set of **reusable layout surfaces**:
+
+- **Workspace Shell**
+  - Top app bar with workspace switcher, search, and quick actions.
+- **Navigation Sidebar**
+  - Channels, direct messages, sections, and key views (e.g. Activity, Later, etc. depending on version).
+- **Main Content Pane**
+  - Message timelines, threads, huddles, canvases, and app content.
+- **Secondary Panels**
+  - Thread details, profiles, canvas details, app drawers that slide in from the right.
+- **Global Overlays**
+  - Modals, dialogs, pickers (channel picker, time picker, file upload, etc.).
+
+### Block Kit Surfaces
+
+For apps and workflows, Block Kit defines specific **surfaces**:
+
+- **Messages**
+  - Rich, interactive messages in channels and DMs, built from up to a defined limit of blocks.
+- **Modals**
+  - Structured dialogs for forms, confirmations, and multi-step workflows.
+- **App Home**
+  - A customizable "app dashboard" inside Slack, composed completely of blocks.
+
+Each surface type has **layout constraints** (max blocks, supported elements) that enforce consistency and prevent chaotic UI.
+
+---
+
+## 🧱 3. Block Kit Components & Patterns
+
+<Card title="Blocks">
+  High-level structural units like section, header, divider, image, actions, and context. They define the vertical flow and hierarchy of messages, modals, and app surfaces.
+</Card>
+
+<Card title="Block Elements">
+  Interactive controls such as buttons, select menus, checkboxes, radio buttons, date pickers, and more. These live inside blocks and drive app interactivity.
+</Card>
+
+<Card title="Composition Objects">
+  Smaller objects (like text objects, option objects, confirm dialogs) that consistently shape content and behavior across blocks.
+</Card>
+
+### Common UI Patterns Enabled by Block Kit
+
+- **Action rows** – buttons and menus grouped in an `actions` block.
+- **Card-like messages** – section + image + context blocks mimicking a card layout.
+- **Forms in modals** – input elements stacked vertically with clear labels and helper text.
+- **Dashboards in App Home** – repeated sections with metrics, filters, and actions.
+- **Rich notifications** – compact messages with primary action buttons and secondary info.
+
+---
+
+## 🎨 4. Visual Language in the Product UI
+
+### Color System in the App
+
+Slack's product UI color usage follows a few core rules:
+
+- **Neutral canvas** – grays and soft surfaces for main backgrounds to reduce fatigue.
+- **Branded accents** – Slack colors (especially aubergine, blues, greens, yellows) used for:
+  - highlights
+  - buttons
+  - badges / statuses
+  - selection states
+- **Semantic colors** – greens for "success", reds for "errors/alerts", yellows for "warnings", tuned for contrast and accessibility.
+
+### Typography
+
+Slack's visual identity uses:
+
+- **Larsseit** and **Slack Circular** (or similar fallbacks) in marketing and product surfaces.
+- Type roles:
+  - Headlines / primary labels – bold, clean, and high-contrast.
+  - Body copy / messages – highly legible at small sizes for long-form chat content.
+  - Metadata / timestamps – de-emphasized but readable, often with lighter weight or smaller size.
+
+### Iconography & Shape Language
+
+- **Rounded shapes** – pill buttons, circular avatars, soft cards.
+- **Octothorpe heritage** – the Slack logo and key UI metaphors reference the `#` symbol (channels, hashtags).
+- **Simple, vector icons** – minimal, clear metaphors, optimized for small sizes and dense environments.
+
+---
+
+## 🧠 5. Interaction & State Patterns
+
+Slack's UI patterns are built around **real-time, conversational work**:
+
+### Interaction Principles
+
+- **Inline First**
+  - Most actions (reactions, replies, file previews) happen inline without leaving the channel.
+- **Progressive Disclosure**
+  - Threads, canvases, user profiles, and app details open in side panels or overlays instead of full page navigations.
+- **Non-blocking Modals**
+  - Forms and confirmations appear in modals with clear primary/secondary actions, and safe exits.
+
+### State Handling
+
+- **Read vs Unread**
+  - Channels and messages use clear typographic and color cues (bold labels, badges) to signal unread activity.
+- **Hover & Focus States**
+  - Message rows and interactive elements show subtle hover/focus affordances to clarify click targets.
+- **Error & Confirmation States**
+  - Errors are communicated near the control that caused the issue, with clear, human-readable messaging.
+- **Ephemeral vs Persistent**
+  - Ephemeral messages and transient prompts are visually differentiated from persistent content.
+
+---
+
+## ♿ 6. Accessibility & Content Rules
+
+Slack's UI and Block Kit guidelines emphasize:
+
+### Content Rules
+
+- **Clear and concise copy** – especially in buttons, labels, and block text.
+- **Avoid over-loading blocks** – use hierarchy and whitespace so content is scannable.
+- **Consistent wording** – reuse terminology and patterns across workflows.
+
+### Accessibility Practices
+
+- **Color contrast** – brand and UI colors are checked for accessible combinations in text and backgrounds.
+- **Structured layouts** – blocks and elements are ordered logically for assistive technologies.
+- **Descriptive labels** – interactive components have clear labels and alt text where needed.
+- **Keyboard-friendly interactions** – modals and controls are designed to work without a mouse.
+
+---
+
+## 🧰 7. Design System Assets & Tools
+
+<Card title="Slack Brand Center">
+  Central hub for logos, color, typography, illustration, and writing guidelines. This is the source of truth for visual identity used across product and marketing.
+</Card>
+
+<Card title="Block Kit Docs">
+  Developer and designer documentation for Slack's in-product UI framework — blocks, elements, patterns, and best practices for messages, modals, and App Home.
+</Card>
+
+<Card title="Block Kit Builder">
+  Web-based WYSIWYG editor for constructing Block Kit layouts, used for prototyping and sharing UI patterns before implementation.
+</Card>
+
+<Card title="Figma Kits & UI Libraries">
+  Community and internal Figma resources replicating Slack UI shells and Block Kit components, used to design workflows and app extensions visually.
+</Card>
+
+---
+
+## ✅ UI Strand Summary – Slack
+
+<success>
+  Slack's UI Strand combines:
+
+  <br />
+
+  • A restrained, accessible product palette\
+   • A block-based UI framework (Block Kit)\
+   • Clear layouts and interaction patterns\
+   to make dense, real-time collaboration feel understandable, navigable, and human.
+</success>
+
+```json
+{
+  "ui_strand": {
+    "workshop_meta": {
+      "framework_version": "ui-strand-v1.0",
+      "source_templates": [
+        "UI Purpose & Role",
+        "Platforms & Viewports",
+        "Layout & Navigation",
+        "Components & Patterns",
+        "Design Tokens",
+        "Visual Language",
+        "Interactions & States",
+        "Accessibility",
+        "Design System Assets",
+        "Governance & Quality"
+      ],
+      "facilitation_notes": [
+        "Run with product design, design systems, front-end engineering, and accessibility.",
+        "Start with screenshots / flows of real product; reverse-engineer structure into this JSON.",
+        "Treat this as the single source of truth for UI decisions and component behavior."
+      ]
+    },
+
+    "purpose_and_role": {
+      "question": "What is the role of UI in this product?",
+      "answer": "The UI exists to make complex, multi-party work feel simple, navigable and predictable. It should visually express the brand, guide users through workflows with minimal friction, and support fast comprehension of dense information.",
+      "objectives": [
+        "Reduce cognitive load in dense, real-time collaboration contexts.",
+        "Make key actions and information visually obvious without overwhelming the user.",
+        "Align visual language with brand while prioritizing usability and accessibility."
+      ]
+    },
+
+    "platforms_and_viewports": {
+      "question": "Where does our UI live, and what environments must it support?",
+      "platforms": [
+        {
+          "name": "Desktop Web",
+          "primary_viewports": ["1440x900", "1280x720"],
+          "notes": "Primary environment; most features are optimized for multi-column layouts."
+        },
+        {
+          "name": "Mobile",
+          "primary_viewports": ["375x812", "414x896"],
+          "notes": "Condensed navigation; focuses on critical workflows and consumption."
+        },
+        {
+          "name": "Desktop App",
+          "primary_viewports": ["Responsive to window size"],
+          "notes": "Shell mirrors web UI but integrates OS-level capabilities (notifications, shortcuts)."
+        }
+      ],
+      "cross_platform_principles": [
+        "Core patterns (navigation, hierarchy, semantics) remain consistent across platforms.",
+        "Mobile adapts UI density and interaction targets but keeps mental models aligned."
+      ]
+    },
+
+    "layout_system": {
+      "question": "What are the core layout regions and how do they behave?",
+      "primary_surfaces": [
+        {
+          "name": "App Shell",
+          "description": "Top-level frame containing global navigation, search, account controls.",
+          "rules": [
+            "Always visible; acts as anchor for orientation.",
+            "Hosts global actions (search, create, notifications)."
+          ]
+        },
+        {
+          "name": "Navigation Sidebar",
+          "description": "Left column listing workspaces, sections, and primary destinations.",
+          "rules": [
+            "Uses vertical lists and grouping for scalable navigation.",
+            "Indicates unread / active states via typography and badges."
+          ]
+        },
+        {
+          "name": "Main Content",
+          "description": "Central area for primary content: timelines, documents, or workspaces.",
+          "rules": [
+            "One primary focus at a time; avoid nested scroll containers.",
+            "Supports contextual toolbars and inline actions."
+          ]
+        },
+        {
+          "name": "Secondary Panel",
+          "description": "Right-hand contextual panel for details, threads, or inspectors.",
+          "rules": [
+            "Slides in without fully obscuring main content.",
+            "Used for details that deepen context, not new primary tasks."
+          ]
+        },
+        {
+          "name": "Overlays & Modals",
+          "description": "Dialogs, pickers, forms and confirmations.",
+          "rules": [
+            "Block background interaction when a decision is required.",
+            "Always provide safe exits and clear primary/secondary actions."
+          ]
+        }
+      ],
+      "grid_system": {
+        "columns": 12,
+        "gutter_px": 24,
+        "margin_px": 24,
+        "notes": "Desktop layouts adhere to a 12-column grid; mobile uses 4–6 columns for simplicity."
+      }
+    },
+
+    "navigation_patterns": {
+      "question": "How do users move through the product?",
+      "global_navigation": [
+        "Persistent left sidebar with sections and collapsible groups.",
+        "Top-level search that can jump to people, spaces, and content.",
+        "Keyboard shortcuts for frequent navigation actions."
+      ],
+      "local_navigation": [
+        "Tabs within a single surface to switch between closely related views.",
+        "Secondary panels for related but non-primary information.",
+        "Breadcrumbs where deep hierarchical navigation exists."
+      ],
+      "discovery_mechanisms": [
+        "Contextual menus on hover or long-press for advanced actions.",
+        "Empty states introducing key concepts and primary actions.",
+        "Onboarding tooltips for first-time feature discovery."
+      ]
+    },
+
+    "components_and_patterns": {
+      "primitive_components": [
+        "Buttons (primary, secondary, tertiary, destructive)",
+        "Text inputs, textareas, search fields",
+        "Selects, dropdowns, comboboxes",
+        "Checkboxes, radio buttons, switches",
+        "Avatars, badges, tags, chips",
+        "Icons, spinners, progress indicators"
+      ],
+      "composite_components": [
+        "Toolbars and action bars",
+        "Cards and list rows",
+        "Data tables and item lists",
+        "Message bubbles or content blocks",
+        "Navigation lists and sidebars",
+        "Notification toasts and banners"
+      ],
+      "interaction_patterns": [
+        "Inline editing of items in lists where appropriate.",
+        "Hover- or focus-revealed quick actions on list rows.",
+        "Confirmation dialogs for destructive actions.",
+        "Undo snackbar for reversible changes.",
+        "Progressive disclosure: show advanced settings behind a 'More options' affordance."
+      ],
+      "block_based_framework": {
+        "question": "Do we have a block/section based framework (like Slack’s Block Kit)?",
+        "answer": "Yes/No (define here)",
+        "notes": "If yes, define block types, elements, and composition rules in a separate object."
+      }
+    },
+
+    "design_tokens": {
+      "question": "What are the atomic UI decisions the entire system depends on?",
+      "color": {
+        "primitive_tokens": [
+          { "name": "color.background.default", "value": "#FFFFFF" },
+          { "name": "color.text.primary", "value": "#1D1D1F" },
+          { "name": "color.accent.primary", "value": "#611F69" },
+          { "name": "color.border.subtle", "value": "#DDDDDD" }
+        ],
+        "semantic_tokens": [
+          { "name": "color.text.muted", "maps_to": "color.text.primary", "opacity": 0.64 },
+          { "name": "color.bg.elevated", "maps_to": "color.background.default", "elevation": "level1" },
+          { "name": "color.status.success", "maps_to": "color.green.500" },
+          { "name": "color.status.error", "maps_to": "color.red.500" }
+        ]
+      },
+      "typography": {
+        "scales": [
+          { "name": "text.xs", "size_px": 12, "line_height": 16 },
+          { "name": "text.sm", "size_px": 14, "line_height": 20 },
+          { "name": "text.md", "size_px": 16, "line_height": 24 },
+          { "name": "text.lg", "size_px": 20, "line_height": 28 }
+        ],
+        "roles": [
+          { "role": "body", "token": "text.md" },
+          { "role": "caption", "token": "text.xs" },
+          { "role": "heading_sm", "token": "text.lg", "weight": "600" }
+        ]
+      },
+      "spacing": {
+        "scale": [0, 4, 8, 12, 16, 20, 24, 32],
+        "notes": "All component paddings, margins, and gaps should derive from these units."
+      },
+      "radius": {
+        "tokens": [
+          { "name": "radius.none", "value": 0 },
+          { "name": "radius.sm", "value": 4 },
+          { "name": "radius.md", "value": 8 },
+          { "name": "radius.lg", "value": 16 }
+        ]
+      },
+      "elevation": {
+        "tokens": [
+          { "name": "shadow.none", "value": "none" },
+          { "name": "shadow.level1", "value": "0 1px 3px rgba(0,0,0,0.12)" },
+          { "name": "shadow.level2", "value": "0 4px 12px rgba(0,0,0,0.18)" }
+        ]
+      },
+      "motion": {
+        "tokens": [
+          { "name": "duration.fast", "value": "120ms" },
+          { "name": "duration.normal", "value": "180ms" },
+          { "name": "duration.slow", "value": "240ms" },
+          { "name": "easing.standard", "value": "cubic-bezier(0.4, 0.0, 0.2, 1)" }
+        ],
+        "principles": [
+          "Motion should serve comprehension, not decoration.",
+          "Animations should be subtle, fast, and cancelable."
+        ]
+      }
+    },
+
+    "visual_language": {
+      "color_usage": {
+        "principles": [
+          "Use neutrals for backgrounds and layouts; reserve strong brand colors for emphasis and actions.",
+          "Semantic colors (success, warning, error, info) must remain consistent across all surfaces.",
+          "Avoid using color alone to convey meaning; pair with icons or labels."
+        ],
+        "examples": [
+          "Primary actions use the main accent color with high contrast text.",
+          "Informational banners use a subtle tint with an icon and clear label."
+        ]
+      },
+      "typography_roles": {
+        "principles": [
+          "Body text must remain highly legible at the smallest supported size.",
+          "Headings establish hierarchy but should not visually compete with content.",
+          "Metadata (timestamps, helper text) is visually de-emphasized but still readable."
+        ]
+      },
+      "iconography": {
+        "styles": [
+          "Simple, geometric icons with consistent stroke weight.",
+          "Minimal detail for clarity at small sizes.",
+          "Avoid overly playful or metaphorical icons that obscure meaning."
+        ],
+        "usage_rules": [
+          "Icons accompany labels, not replace them for critical actions.",
+          "Status icons use semantic color coding consistently."
+        ]
+      },
+      "shape_language": {
+        "guidelines": [
+          "Rounded corners to reinforce approachability.",
+          "Avoid sharp or aggressive shapes in primary interaction zones.",
+          "Use overlapping shapes and stacked layers to imply collaboration and depth."
+        ]
+      },
+      "imagery": {
+        "style": [
+          "Human-centric imagery showing real or stylized collaboration.",
+          "Avoid generic corporate stock where possible.",
+          "Illustrations should simplify, not complicate, conceptual explanations."
+        ]
+      }
+    },
+
+    "interaction_and_states": {
+      "interaction_principles": [
+        "Inline interactions where possible to reduce context switching.",
+        "Progressive disclosure for complexity — show essentials by default.",
+        "Respect the user’s focus: avoid unexpected modal interrupts."
+      ],
+      "core_states": [
+        "Default",
+        "Hover / Focus",
+        "Active / Pressed",
+        "Loading",
+        "Disabled",
+        "Success",
+        "Warning",
+        "Error"
+      ],
+      "feedback_patterns": [
+        "Use inline validation for forms with clear, human-readable messages.",
+        "Show non-blocking toasts for background operations and recovery actions.",
+        "Use spinners or skeletons for loading states that exceed a defined threshold."
+      ],
+      "keyboard_and_shortcuts": {
+        "support_level": "first-class",
+        "principles": [
+          "All primary actions must be reachable via keyboard.",
+          "Global and contextual shortcuts should be discoverable and documented.",
+          "Focus order respects visual hierarchy and user expectations."
+        ]
+      }
+    },
+
+    "accessibility": {
+      "policies": [
+        "Target WCAG 2.1 AA or higher for contrast and interaction.",
+        "All interactive controls must have accessible names and roles.",
+        "Support screen readers across primary platforms."
+      ],
+      "checklist": [
+        "Color contrast: text and icons meet contrast standards.",
+        "Keyboard navigation: all interactive elements focusable and operable.",
+        "Focus indicators: visible and distinct.",
+        "ARIA attributes used appropriately where semantics are not native.",
+        "Motion and animation respect reduced motion user preferences."
+      ]
+    },
+
+    "theming_and_modes": {
+      "supports_dark_mode": true,
+      "theming_model": "semantic-tokens",
+      "rules": [
+        "Semantic tokens remain constant; underlying raw values change by theme.",
+        "Preserve brand recognition across themes without sacrificing legibility.",
+        "Check all theme combinations for critical workflows before release."
+      ]
+    },
+
+    "design_system_assets": {
+      "figma_libraries": [
+        {
+          "name": "Core UI Library",
+          "scope": "Tokens, primitives, common patterns",
+          "owner": "Design Systems Team"
+        },
+        {
+          "name": "Product Surfaces",
+          "scope": "Shell, navigation, high-level layouts per platform",
+          "owner": "Product Design"
+        }
+      ],
+      "code_libraries": [
+        {
+          "name": "UI Component Library",
+          "tech_stack": "React / TypeScript",
+          "owner": "Front-end Platform"
+        }
+      ],
+      "documentation": [
+        {
+          "type": "UI Guidelines",
+          "location": "internal-docs/ui",
+          "notes": "Usage guidelines, anti-patterns, accessibility notes."
+        }
+      ],
+      "tools": [
+        "Design handoff tool of choice (e.g., Figma Inspect, Storybook, etc.)",
+        "Visual regression testing suite",
+        "Linting rules for UI code consistency"
+      ]
+    },
+
+    "governance_and_quality": {
+      "ownership": {
+        "primary_owner": "Design Systems Lead",
+        "co_owners": [
+          "Head of Product Design",
+          "Front-end Platform Lead",
+          "Accessibility Lead"
+        ]
+      },
+      "change_process": [
+        "Propose change in design system RFC channel.",
+        "Prototype in Figma and/or UI sandbox.",
+        "Review with design systems + accessibility + engineering.",
+        "Document rationale and usage guidelines.",
+        "Implement in code library and announce to product teams."
+      ],
+      "quality_metrics": [
+        "Design system adoption rate (% of UI built using system components).",
+        "Number of custom one-off components in production (lower is better).",
+        "Accessibility issue count and resolution time.",
+        "Visual regression failures per release.",
+        "Support tickets attributable to confusing or broken UI."
+      ]
+    },
+
+    "ui_archetype": {
+      "question": "If the UI were a character, how should it feel?",
+      "primary_archetype": "Guide",
+      "secondary_archetype": "Collaborator",
+      "rationale": "The UI should feel like a calm, competent partner that helps users navigate complexity and coordinate with others, not like a control panel or a chaotic feed."
+    }
+  }
+}
+```

@@ -125,6 +125,332 @@ While Slack does not publish all private metrics, key metrics to monitor for thi
 Slack’s Product Strand is built to **deliver** the Brand promises of simplicity, human collaboration and productivity.\
 It does so by offering a unified workspace where conversations, tools and workflows converge — designed for teams, built for scale, and oriented toward the future of work.
 
----
+```json
+{
+  "product_strand": {
+    "workshop_meta": {
+      "framework_version": "product-strand-v1.0",
+      "source_templates": [
+        "Product Definition",
+        "Customer Segments",
+        "Jobs To Be Done",
+        "Product Pillars",
+        "Capabilities & Features",
+        "AI & Automation",
+        "Platform & Extensibility",
+        "Non-Goals & Constraints",
+        "Quality Bars",
+        "Success Metrics",
+        "Roadmap Principles",
+        "Risk & Guardrails"
+      ],
+      "facilitation_notes": [
+        "Run with product, design, engineering, data, sales, customer success and marketing.",
+        "Start from actual usage data, customer stories and support tickets rather than opinions.",
+        "Treat this as the living product OS — it should drive roadmaps and feature decisions."
+      ]
+    },
 
-<LinkCard title="Next: UX Strand" href="/strands/ux" description="How user experience expresses brand and product through design, flows and interactions." />
+    "product_definition": {
+      "what_is_slack": {
+        "question": "In one paragraph, what is the Slack product?",
+        "answer": "Slack is an AI-powered digital workspace where people, tools, data and AI agents collaborate in real time and asynchronously. It replaces siloed email threads and scattered apps with channels, huddles, canvases, lists, workflows and integrations, so teams can coordinate work, share knowledge and make decisions in one place."
+      },
+      "problem_statement": {
+        "question": "Which core problem does Slack exist to solve?",
+        "answer": "Modern work is fragmented across email, meetings and disconnected tools, making it slow and stressful to stay aligned. Slack solves this by turning communication, knowledge and workflows into an organized, searchable system that keeps teams in sync without relying on endless status meetings and inbox chaos."
+      },
+      "positioning": {
+        "short": "Slack is the digital HQ where people, tools and AI agents come together to get work done.",
+        "category": "AI work management · Collaboration & productivity",
+        "alternatives": [
+          "Email",
+          "Point chat tools",
+          "Standalone video conferencing apps",
+          "Legacy intranets and portals"
+        ]
+      }
+    },
+
+    "customer_segments": {
+      "primary_segments": [
+        {
+          "name": "Knowledge-work teams in SMB and mid-market companies",
+          "needs": [
+            "Fast, flexible collaboration without heavy IT overhead.",
+            "Central place to coordinate projects, clients and internal work.",
+            "Simple way to connect SaaS tools and automate routine work."
+          ]
+        },
+        {
+          "name": "Large enterprises and global organizations",
+          "needs": [
+            "Secure cross-functional collaboration across departments and regions.",
+            "Integration with existing systems (CRM, ITSM, HRIS, data warehouses).",
+            "Governance, compliance and admin controls at scale."
+          ]
+        },
+        {
+          "name": "External collaboration networks",
+          "needs": [
+            "Share channels with customers, partners and vendors instead of long email threads.",
+            "Extend internal workflows and notifications to external organizations.",
+            "Maintain security boundaries and compliance while collaborating externally."
+          ]
+        }
+      ],
+      "secondary_segments": [
+        {
+          "name": "Developers and technical teams",
+          "notes": "Heavy usage of integrations, notifications, incident channels and platform capabilities."
+        },
+        {
+          "name": "Operations & support teams",
+          "notes": "Use channels, workflows and automations to handle tickets, incidents and approvals."
+        }
+      ],
+      "anti_segments": [
+        "Teams whose primary constraint is no internet or no modern device access.",
+        "Workflows that must remain entirely offline or air-gapped for regulatory reasons."
+      ]
+    },
+
+    "jobs_to_be_done": {
+      "core_jobs": [
+        {
+          "job": "Keep my team aligned without constant status meetings.",
+          "struggling_moment": "We’re shipping work across functions and time zones; meetings don’t scale and email is too slow.",
+          "slack_solution": "Channels, huddles, stand-up rituals, async updates and searchable history keep everyone informed without pulling them into every call."
+        },
+        {
+          "job": "Find the information or decision I need quickly.",
+          "struggling_moment": "I don’t remember where something was shared — email, a doc, a deck, someone’s head?",
+          "slack_solution": "Search across messages, files, clips, canvases and integrated tools, with AI summarization to surface relevant context fast."
+        },
+        {
+          "job": "Work with customers and partners like they’re part of my team.",
+          "struggling_moment": "External collaboration is fragmented across email, portals and ad-hoc calls.",
+          "slack_solution": "Slack Connect channels let internal and external teams collaborate in one place with shared context and workflows."
+        },
+        {
+          "job": "Automate repetitive coordination work.",
+          "struggling_moment": "Approvals, requests and notifications are manual, error-prone and easy to forget.",
+          "slack_solution": "Workflow Builder, apps and integrations automate routine flows like approvals, onboarding, incident alerts and reminders."
+        },
+        {
+          "job": "Bring AI into my everyday work without switching tools.",
+          "struggling_moment": "AI is available in separate tools but not embedded in daily collaboration.",
+          "slack_solution": "Slack AI and AI agents summarize channels, search knowledge, draft responses and interact with systems directly inside Slack."
+        }
+      ]
+    },
+
+    "product_pillars": {
+      "pillars": [
+        {
+          "name": "Channels as the default unit of work",
+          "role": "Turn fragmented communication into structured, topic-based streams.",
+          "implications": [
+            "Every major initiative, team and relationship should have a channel.",
+            "Design features to reinforce channels as the primary collaboration surface."
+          ]
+        },
+        {
+          "name": "Digital HQ for people, tools and data",
+          "role": "Make Slack the orchestrating layer where work is coordinated across systems.",
+          "implications": [
+            "Prioritize integrations, canvases, lists and workflows that pull more work into Slack.",
+            "Slack should be the first place people go to start, track or resume work."
+          ]
+        },
+        {
+          "name": "Automation and AI for routine work",
+          "role": "Remove repetitive coordination work from humans’ plates.",
+          "implications": [
+            "Make Workflow Builder and Slack AI first-class, not add-ons.",
+            "Default to automatable patterns for notifications, approvals and handoffs."
+          ]
+        },
+        {
+          "name": "Secure collaboration at any scale",
+          "role": "Support small teams to global enterprises with strong security, admin and compliance.",
+          "implications": [
+            "Security and governance are embedded into product decisions, not bolted on.",
+            "Slack Connect and app platform respect enterprise-grade compliance and controls."
+          ]
+        },
+        {
+          "name": "Inclusive, human-centric work",
+          "role": "Make digital work feel humane, flexible and inclusive.",
+          "implications": [
+            "Support async by default — don’t force real-time when not needed.",
+            "Features should work for distributed, cross-functional, diverse teams."
+          ]
+        }
+      ]
+    },
+
+    "capabilities_and_features": {
+      "core_collaboration": [
+        "Channels (team, project, topic, external)",
+        "Direct messages and group DMs",
+        "Huddles (lightweight audio/video with screen share)",
+        "Messaging with rich formatting, emoji, mentions and threads",
+        "Clips (recorded video/voice messages)"
+      ],
+      "knowledge_and_content": [
+        "Canvas for structured, persistent documents inside Slack",
+        "Lists for tracking tasks, work items and projects",
+        "File sharing and previews (docs, images, decks, etc.)",
+        "Search across messages, files, canvases, lists and more"
+      ],
+      "automation_and_ai": [
+        "Workflow Builder to create no-code automations",
+        "Slack AI for summarization, search and drafting",
+        "AI agents that interact with enterprise systems on behalf of users"
+      ],
+      "external_collaboration": [
+        "Slack Connect channels and DMs with external organizations",
+        "Admin controls and policies for external access",
+        "Shared workflows across org boundaries where supported"
+      ],
+      "platform_and_integrations": [
+        "Apps & integrations directory",
+        "APIs and SDKs for building Slack apps and workflows",
+        "Events and webhooks for system-to-Slack and Slack-to-system communication"
+      ],
+      "enterprise_and_admin": [
+        "Admin center for workspace and org management",
+        "Security, compliance and data retention controls",
+        "Analytics and insights on usage and engagement"
+      ]
+    },
+
+    "ai_and_automation": {
+      "vision": "Make AI and automation part of everyday collaboration, not a separate destination.",
+      "principles": [
+        "AI should save time and reduce cognitive load, not add noise.",
+        "Users stay in control — AI suggestions and automations are inspectable and overridable.",
+        "Automations must be easy to create and maintain, including for non-developers."
+      ],
+      "key_capabilities": [
+        "Channel and thread summarization for catching up quickly.",
+        "Semantic search across messages, files, canvases and integrated tools.",
+        "Draft generation for updates, messages and documentation.",
+        "Workflow automation across Slack and connected apps."
+      ]
+    },
+
+    "platform_and_extensibility": {
+      "platform_role": {
+        "question": "How does the Slack platform extend the core product?",
+        "answer": "The platform lets developers and partners build apps, automations and integrations that bring third-party tools into Slack, so users can act on external systems without leaving their workspace."
+      },
+      "extension_surfaces": [
+        "Messages (interactive app messages and notifications)",
+        "Modals (forms, multi-step flows)",
+        "App Home (dashboards and control panels for apps)",
+        "Shortcuts and slash commands",
+        "Workflow steps in Workflow Builder"
+      ],
+      "developer_value": [
+        "Reach active users where they already work.",
+        "Standardized components (Block Kit) for consistent UI.",
+        "APIs, events and admin frameworks for secure integration."
+      ]
+    },
+
+    "non_goals_and_constraints": {
+      "non_goals": [
+        "Slack is not a full replacement for specialized systems of record (CRM, ERP, HRIS, etc.) — it orchestrates and surfaces them.",
+        "Slack is not a consumer social network; it optimizes for work relationships and outcomes.",
+        "Slack does not try to own every document or file format; it connects to existing ecosystems."
+      ],
+      "constraints": [
+        "Features must respect enterprise security, compliance and data residency requirements.",
+        "New surfaces should not fragment the core mental model of channels as the primary unit of work.",
+        "Any feature that significantly increases noise or notification load must ship with strong controls and defaults."
+      ]
+    },
+
+    "quality_bars": {
+      "experience": [
+        "New users can understand Slack’s basic model (channels + messages + search) within their first session.",
+        "Experienced users can perform key workflows without unnecessary steps or switching tools.",
+        "Performance remains acceptable even in large workspaces with heavy usage."
+      ],
+      "reliability": [
+        "High uptime targets appropriate for business-critical communication.",
+        "Graceful degradation where possible (e.g., partial functionality during incidents)."
+      ],
+      "security_and_trust": [
+        "Features meet internal security review standards before rollout.",
+        "Customer control over data retention, access and integrations is clear and enforceable."
+      ]
+    },
+
+    "success_metrics": {
+      "adoption_and_engagement": [
+        "Active workspaces and daily active users.",
+        "Depth of usage across channels, huddles, canvases, lists and workflows.",
+        "Adoption of Slack AI and automations."
+      ],
+      "collaboration_outcomes": [
+        "Reduction in internal email usage (where measured).",
+        "Decrease in meeting time for teams using Slack deeply.",
+        "Speed of decision-making and incident resolution in channels."
+      ],
+      "platform_health": [
+        "Number and quality of active apps and integrations.",
+        "Usage of Workflow Builder and custom workflows.",
+        "External collaboration via Slack Connect channels."
+      ],
+      "enterprise_health": [
+        "Retention and expansion in existing customers.",
+        "Adoption of security, compliance and admin features in large organizations."
+      ]
+    },
+
+    "roadmap_principles": {
+      "prioritization_rules": [
+        "Prioritize work that strengthens Slack as the digital HQ — where more work actually happens in Slack.",
+        "Favor features that improve both individual productivity and team alignment.",
+        "Invest in platform and AI capabilities that unlock many use cases, not just single features."
+      ],
+      "tradeoff_guidelines": [
+        "Do not sacrifice clarity and usability for novelty.",
+        "Enterprise requirements (security, admin, compliance) must be considered early, not retrofitted.",
+        "When in doubt, choose reducing noise over adding more signals."
+      ],
+      "feedback_inputs": [
+        "Customer research and design discovery.",
+        "Usage analytics and product telemetry.",
+        "Support and success signals (common friction points).",
+        "Partner and developer ecosystem feedback."
+      ]
+    },
+
+    "risks_and_guardrails": {
+      "key_risks": [
+        "Feature bloat that overwhelms users and obscures the core value of channels and messaging.",
+        "Too much automation or AI-generated content that increases noise instead of reducing it.",
+        "Fragmentation between internal, external and app experiences if patterns diverge.",
+        "Security or trust incidents that undermine Slack’s role as a central hub for work."
+      ],
+      "guardrails": [
+        "Strict review for any feature that changes notification patterns or defaults.",
+        "Design and research review for major new surfaces to ensure they fit the core mental model.",
+        "Security and privacy review integrated into product development lifecycle.",
+        "Clear deprecation and migration paths when replacing or consolidating features."
+      ]
+    },
+
+    "product_archetype": {
+      "question": "If Slack as a product were a role in a team, what would it be?",
+      "primary_archetype": "Coordinator",
+      "secondary_archetype": "Amplifier",
+      "rationale": "Slack’s product should feel like the coordinator that keeps everyone and everything in sync, and the amplifier that helps teams move faster by connecting people, tools, data and AI in one place."
+    }
+  }
+}
+```
